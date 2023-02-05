@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-
+//dneska :):)
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
