@@ -11,12 +11,25 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
+//import javax.swing.*;
 import java.io.File;
 import java.net.URL;
 
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+    private static int loginParam;
+
+    {
+        setLoginParam(0);
+    }
+
+    private void setLoginParam(int i) {
+    }
+    private int getLoginParam(){
+        return loginParam;
+    }
 
     @FXML
     private Button cancelButton;
@@ -49,9 +62,10 @@ public class LoginController implements Initializable {
         //loginMessageLabel.setText("");
         if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
             validateLogin();
-            loginMessageLabel.setText("Let's go!");
-            loginMessageLabel.setVisible(true);
+           // loginMessageLabel.setText("Let's go!");
+            //loginMessageLabel.setVisible(true);
         }else{
+            loginMessageLabel.setText("Enter Username & Password");
             loginMessageLabel.setVisible(true);
         }
 
@@ -62,7 +76,27 @@ public class LoginController implements Initializable {
         stage.close();
     }
     public void validateLogin(){
+        try{
+            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","OGSMURFEN","1");
+            String usernaam = usernameTextField.getText();
+            String pwrd = enterPasswordField.getText();
+            String sql = "select * from LOGIN where USERNAME = '"+usernaam+"' and PASSWORDD = '"+ pwrd +"'";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
 
+            if(rs.next()){
+                loginMessageLabel.setText("Login Success!");
+                loginMessageLabel.setVisible(true);
+                setLoginParam((getLoginParam())+(Integer.parseInt(rs.getString("LOGINPARAM"))));
+                //the LOGINPARAM column contains loginParam; if loginParam == 1 => admin; if == 2 => user; 0 = no login
+
+            }else{
+                System.out.println(usernaam +" "+ pwrd);
+                loginMessageLabel.setText("Invalid username & password!");
+                loginMessageLabel.setVisible(true);
+            }
+
+        }catch (Exception exception){System.out.println(exception);}
     }
 
     /* original:
