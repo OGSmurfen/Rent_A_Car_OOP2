@@ -1,7 +1,9 @@
 package com.example.rent_a_car_oop2;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -10,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.stage.StageStyle;
 
 //import javax.swing.*;
 import java.io.File;
@@ -43,6 +46,8 @@ public class LoginController implements Initializable {
     private TextField usernameTextField;
     @FXML
     private PasswordField enterPasswordField;
+    @FXML
+    private Button registerButton;
 
 
     @Override
@@ -69,6 +74,13 @@ public class LoginController implements Initializable {
             loginMessageLabel.setVisible(true);
         }
 
+    }
+    public void registerButtonOnAction(ActionEvent event){
+        loginMessageLabel.setText("REGISTER BRO!!!");
+        loginMessageLabel.setVisible(true);
+        Stage loginStage = (Stage) registerButton.getScene().getWindow();
+        //loginStage.close();
+        createAccountForm();
     }
 
     public void cancelButtonOnAction(ActionEvent event){
@@ -97,6 +109,20 @@ public class LoginController implements Initializable {
             }
 
         }catch (Exception exception){System.out.println(exception);}
+    }
+
+    public void createAccountForm(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("register.fxml"));
+            Stage registerStage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load(), 520, 447);
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(scene);
+            registerStage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
     /* original:
