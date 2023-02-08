@@ -101,6 +101,8 @@ public class LoginController implements Initializable {
                 loginMessageLabel.setVisible(true);
                 setLoginParam((getLoginParam())+(Integer.parseInt(rs.getString("LOGINPARAM"))));
                 //the LOGINPARAM column contains loginParam; if loginParam == 1 => admin; if == 2 => user; 0 = no login
+                homeForm();
+                //if login is successful, we go to homepage
 
             }else{
                 System.out.println(usernaam +" "+ pwrd);
@@ -110,7 +112,19 @@ public class LoginController implements Initializable {
 
         }catch (Exception exception){System.out.println(exception);}
     }
-
+    public void homeForm(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home.fxml"));
+            Stage registerStage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load(), 520, 447);
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(scene);
+            registerStage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
     public void createAccountForm(){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("register.fxml"));
