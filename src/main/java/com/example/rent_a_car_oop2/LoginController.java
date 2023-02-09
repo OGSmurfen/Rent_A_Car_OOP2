@@ -28,9 +28,12 @@ public class LoginController implements Initializable {
         setLoginParam(0);
     }
 
-    private void setLoginParam(int i) {
+    public static void setLoginParam(int loginParam) {
+        LoginController.loginParam = loginParam;
     }
-    private int getLoginParam(){
+
+
+    public int getLoginParam(){
         return loginParam;
     }
 
@@ -64,6 +67,7 @@ public class LoginController implements Initializable {
     }
 
     public void loginButtonOnAction(ActionEvent event){
+        setLoginParam(0);
         //loginMessageLabel.setText("");
         if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
             validateLogin();
@@ -100,8 +104,13 @@ public class LoginController implements Initializable {
                 loginMessageLabel.setText("Login Success!");
                 loginMessageLabel.setVisible(true);
                 setLoginParam((getLoginParam())+(Integer.parseInt(rs.getString("LOGINPARAM"))));
+                System.out.println(getLoginParam());
                 //the LOGINPARAM column contains loginParam; if loginParam == 1 => admin; if == 2 => user; 0 = no login
-                homeForm();
+                if(loginParam == 1){
+                AdminHomeForm();
+                }else if(loginParam == 2){
+                    OperatorLoginForm();
+                }
                 //if login is successful, we go to homepage
 
             }else{
@@ -112,9 +121,22 @@ public class LoginController implements Initializable {
 
         }catch (Exception exception){System.out.println(exception);}
     }
-    public void homeForm(){
+    public void AdminHomeForm(){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("AdminHome.fxml"));
+            Stage registerStage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load(), 520, 447);
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(scene);
+            registerStage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    public void OperatorLoginForm(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("OperatorHome.fxml"));
             Stage registerStage = new Stage();
             Scene scene = new Scene(fxmlLoader.load(), 520, 447);
             registerStage.initStyle(StageStyle.UNDECORATED);
