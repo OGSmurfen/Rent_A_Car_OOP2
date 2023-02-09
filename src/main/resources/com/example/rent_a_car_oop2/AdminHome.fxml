@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rent_a_car_oop2.HomeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rent_a_car_oop2.AdminHomeController">
    <children>
       <Label layoutX="63.0" layoutY="150.0" rotate="35.5" text="HOME PAGE IN DEVELOPMENT" textFill="RED">
          <font>

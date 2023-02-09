@@ -114,7 +114,7 @@ public class LoginController implements Initializable {
     }
     public void homeForm(){
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("AdminHome.fxml"));
             Stage registerStage = new Stage();
             Scene scene = new Scene(fxmlLoader.load(), 520, 447);
             registerStage.initStyle(StageStyle.UNDECORATED);
