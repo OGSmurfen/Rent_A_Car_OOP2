@@ -8,6 +8,7 @@ module com.example.rent_a_car_oop2 {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires postgresql;
 
     opens com.example.rent_a_car_oop2 to javafx.fxml;
     exports com.example.rent_a_car_oop2;

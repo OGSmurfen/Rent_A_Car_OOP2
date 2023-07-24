@@ -3,6 +3,7 @@ package com.example.rent_a_car_oop2;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
@@ -10,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
@@ -55,6 +57,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        usernameTextField.setText("");
+        enterPasswordField.setText("");
         File brandingFile = new File("Images/login_rentacar_2.png");
         Image brandingImage = new Image(brandingFile.toURI().toString());
         brandingImageView.setImage(brandingImage);
@@ -64,6 +68,7 @@ public class LoginController implements Initializable {
         lockImageView.setImage(lockImage);
 
         loginMessageLabel.setVisible(false);
+
     }
 
     public void loginButtonOnAction(ActionEvent event){
@@ -71,8 +76,11 @@ public class LoginController implements Initializable {
         //loginMessageLabel.setText("");
         if(usernameTextField.getText().isBlank() == false && enterPasswordField.getText().isBlank() == false){
             validateLogin();
-           // loginMessageLabel.setText("Let's go!");
-            //loginMessageLabel.setVisible(true);
+            //clear credentials if valid!!
+            usernameTextField.setText("");
+            enterPasswordField.setText("");
+            // loginMessageLabel.setText("Let's go!");
+            // loginMessageLabel.setVisible(true);
         }else{
             loginMessageLabel.setText("Enter Username & Password");
             loginMessageLabel.setVisible(true);
@@ -93,14 +101,27 @@ public class LoginController implements Initializable {
     }
     public void validateLogin(){
         try{
-            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","OGSMURFEN","1");
+            //connection for oracle db:
+            //Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","OGSMURFEN","1");
+            //new connection for posgresql:
+            DriverManager.registerDriver(new org.postgresql.Driver());
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOP2", "postgres", "1");
+            System.out.println("Database connection successful!");
             String usernaam = usernameTextField.getText();
             String pwrd = enterPasswordField.getText();
-            String sql = "select * from LOGIN where USERNAME = '"+usernaam+"' and PASSWORDD = '"+ pwrd +"'";
+            String sql = "select * from LOGIN where USERNAME = '"+usernaam+"' and PASSWORD = '"+ pwrd +"'";
+            String operatorSQL = "SELECT * FROM operators WHERE operator_names = '"+usernaam+"' AND operator_job = '"+ pwrd +"'";
+           // String sql = "select * from login where USERNAME = '"+usernaam+"' and PASSWORD = '"+ pwrd +"'";
             PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement psTwo = conn.prepareStatement(operatorSQL);
             ResultSet rs = ps.executeQuery();
-
-            if(rs.next()){
+            ResultSet rsTwo = psTwo.executeQuery();
+            if(rsTwo.next()){//IF it is an operator
+                loginMessageLabel.setText("Operator Login Success!");
+                loginMessageLabel.setVisible(true);
+                OperatorLoginForm();
+            }
+            if(rs.next()){//if LOGIN is from loginTable
                 loginMessageLabel.setText("Login Success!");
                 loginMessageLabel.setVisible(true);
                 setLoginParam((getLoginParam())+(Integer.parseInt(rs.getString("LOGINPARAM"))));
