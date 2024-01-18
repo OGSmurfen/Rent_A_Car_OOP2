@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="447.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.AdminHomeController">
+   <children>
+      <TabPane prefHeight="447.0" prefWidth="520.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Home">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="63.0" layoutY="157.0" prefHeight="46.0" prefWidth="393.0" rotate="36.1" text="Welcome To Admin Home" textFill="RED">
+                           <font>
+                              <Font size="31.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="OKbutton" layoutX="188.0" layoutY="299.0" mnemonicParsing="false" onAction="#OKbuttonOnAction" style="-fx-background-color: #E96151;" text="Logout" textFill="WHITE">
+                           <font>
+                              <Font size="38.0" />
+                           </font>
+                        </Button>
+                        <ImageView fx:id="Neo" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Images/neo.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="Morpheus" fitHeight="150.0" fitWidth="200.0" layoutX="345.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Images/morpheus.png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane layoutX="1.0" layoutY="2.0" prefHeight="42.0" prefWidth="520.0" style="-fx-background-color: #E96151;" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Edit Companies">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="388.0" prefWidth="520.0">
+                           <children>
+                              <TableView fx:id="CompaniesTableView" layoutX="67.0" layoutY="41.0" prefHeight="200.0" prefWidth="383.0">
+                                <columns>
+                                  <TableColumn fx:id="CompanyIdColumn" prefWidth="74.4000244140625" text="company_id" />
+                                  <TableColumn fx:id="CompanyNameColumn" minWidth="0.0" prefWidth="146.39996337890625" text="company_name" />
+                                </columns>
+                              </TableView>
+                              <TextField fx:id="InsertCompanyIdField" layoutX="82.0" layoutY="253.0" prefHeight="26.0" prefWidth="54.0" />
+                              <TextField fx:id="InsertCompanyNameField" layoutX="165.0" layoutY="253.0" prefHeight="26.0" prefWidth="131.0" />
+                              <Button fx:id="AddCompanyButton" layoutX="67.0" layoutY="300.0" mnemonicParsing="false" onAction="#AddCompanyButtonOnAction" prefHeight="43.0" prefWidth="111.0" style="-fx-background-color: #E96151;" text="Add" textFill="WHITE" />
+                              <Button fx:id="DeleteCompanyButton" layoutX="218.0" layoutY="300.0" mnemonicParsing="false" onAction="#DeleteCompanyButtonOnAction" prefHeight="44.0" prefWidth="110.0" style="-fx-background-color: #E96151;" text="Delete" textFill="WHITE" />
+                              <Button fx:id="RefreshCompaniesButton" layoutX="459.0" layoutY="120.0" mnemonicParsing="false" onAction="#RefreshCompaniesButtonOnAction" style="-fx-background-color: #ffffff;" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fx:id="RefreshCompaniesImageView" fitHeight="37.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../Images/refreshIconNoBG.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <AnchorPane layoutX="-1.0" layoutY="1.0" prefHeight="32.0" prefWidth="520.0" style="-fx-background-color: #E96151;" />
+                           </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Edit Operators">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="AddOperatorButton" layoutX="52.0" layoutY="298.0" mnemonicParsing="false" onAction="#AddOperatorButtonOnAction" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E96151;" text="Add" textFill="WHITE" />
+                        <TableView fx:id="tableView" layoutX="52.0" layoutY="35.0" prefHeight="200.0" prefWidth="414.0">
+                          <columns>
+                            <TableColumn fx:id="operatorIdColumn" prefWidth="78.39996337890625" text="operator_id" />
+                            <TableColumn fx:id="operatorNamesColumn" prefWidth="165.5999755859375" text="operator_names" />
+                              <TableColumn fx:id="operatorJobColumn" prefWidth="137.5999755859375" text="operator_job" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="DeleteOperatorButton" layoutX="204.0" layoutY="298.0" mnemonicParsing="false" onAction="#DeleteOperatorButtonOnAction" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #E96151;" text="Delete" textFill="WHITE" />
+                        <TextField fx:id="InsertOpIdField" layoutX="61.0" layoutY="241.0" prefHeight="26.0" prefWidth="61.0" />
+                        <TextField fx:id="InsertOpNameField" layoutX="131.0" layoutY="241.0" prefHeight="26.0" prefWidth="146.0" />
+                        <TextField fx:id="InsertOpJobField" layoutX="306.0" layoutY="241.0" prefHeight="26.0" prefWidth="122.0" />
+                        <Button fx:id="RefreshOperatorsButton" layoutX="468.0" layoutY="78.0" minWidth="50.0" mnemonicParsing="false" onAction="#RefreshOperatorsButtonOnAction" prefHeight="26.0" prefWidth="50.0" style="-fx-background-color: #ffffff;">
+                           <graphic>
+                              <ImageView fx:id="RefreshImageDisplay" fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Images/refreshIconNoBG.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <AnchorPane layoutX="-5.0" layoutY="-3.0" prefHeight="27.0" prefWidth="527.0" style="-fx-background-color: #E96151;" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

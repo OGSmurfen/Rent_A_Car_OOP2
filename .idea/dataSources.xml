@@ -1,25 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Rent_a_car_DB" uuid="1c5b9509-83c7-4489-b68c-8622aa246315">
-      <driver-ref>oracle.19</driver-ref>
-      <synchronize>true</synchronize>
-      <auto-commit>false</auto-commit>
-      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
-      <jdbc-url>jdbc:oracle:thin:@localhost:1521:XE</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="OOP2" uuid="376e188e-1565-412d-97d0-ccef5a161614">
+    <data-source source="LOCAL" name="OOP2@localhost" uuid="a57c02f4-9355-41f7-a6fc-27503c494f27">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <remarks>rentacar oop2 db</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/OOP2</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="OOP2_v2" uuid="5f9fd17a-2815-4444-9cb8-9cb24b02b097">
+    <data-source source="LOCAL" name="Rent_a_car_OOP2/OpenJPA" uuid="c524d8b3-a014-449f-8351-872972d278d9">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>OpenJPA
+
+D:/java_OOP2_KP/Rent_a_car_OOP2/src/main/resources/META-INF/persistence.xml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/OOP2</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="Rent_a_car_OOP2/EclipseLink" uuid="4354e2b5-3830-4e1e-9660-95721519280a">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>EclipseLink
+
+D:/java_OOP2_KP/Rent_a_car_OOP2/src/main/resources/META-INF/persistence.xml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/OOP2</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="Rent_a_car_OOP2/TopLink" uuid="fba8e4aa-c106-4a14-bb81-3b6db2ad5387">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>TopLink
+
+D:/java_OOP2_KP/Rent_a_car_OOP2/src/main/resources/META-INF/persistence.xml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/OOP2</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="Rent_a_car_OOP2/Hibernate" uuid="49ca9020-a4d4-4432-bedc-ffb58391a036">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+D:/java_OOP2_KP/Rent_a_car_OOP2/src/main/resources/META-INF/persistence.xml</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/OOP2</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
