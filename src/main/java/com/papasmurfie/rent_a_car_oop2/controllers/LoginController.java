@@ -1,6 +1,7 @@
 package com.papasmurfie.rent_a_car_oop2.controllers;
 
 import com.papasmurfie.rent_a_car_oop2.Main;
+import com.papasmurfie.rent_a_car_oop2.helpers.DatabaseConfig;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -110,7 +111,7 @@ public class LoginController implements Initializable {
             //Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","OGSMURFEN","1");
             //new connection for posgresql:
             DriverManager.registerDriver(new org.postgresql.Driver());
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOP2", "postgres", "1");
+            Connection conn = DatabaseConfig.getConnection();
             //System.out.println("Database connection successful!");
             logger.info("Database connection for Login successful!");
             String usernaam = usernameTextField.getText();
@@ -155,7 +156,7 @@ public class LoginController implements Initializable {
     }
     public void AdminHomeForm(){
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("AdminHome.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("AdminMain.fxml"));
             Stage registerStage = new Stage();
             Scene scene = new Scene(fxmlLoader.load(), 520, 447);
             registerStage.initStyle(StageStyle.UNDECORATED);

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="447.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.admin.AdminMainController">
+    <TabPane fx:id="tabPane" prefHeight="447.0" prefWidth="520.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab fx:id="homeTab" text="Home">
+            <fx:include source="AdminHomeTab.fxml"/>
+        </Tab>
+        <Tab text="Edit Companies">
+            <fx:include source="AdminCompaniesTab.fxml"/>
+        </Tab>
+        <Tab text="Edit Operators">
+            <fx:include source="AdminOperatorsTab.fxml"/>
+        </Tab>
+    </TabPane>
+</AnchorPane>

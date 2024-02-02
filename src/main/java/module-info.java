@@ -19,6 +19,10 @@ module com.example.rent_a_car_oop2 {
     exports com.papasmurfie.rent_a_car_oop2.models;
     opens com.papasmurfie.rent_a_car_oop2.models to javafx.fxml;
     opens com.papasmurfie.rent_a_car_oop2.entities;
+    exports com.papasmurfie.rent_a_car_oop2.helpers;
+    opens com.papasmurfie.rent_a_car_oop2.helpers to javafx.fxml, org.hibernate.commons.annotations;
+    exports com.papasmurfie.rent_a_car_oop2.controllers.admin;
+    opens com.papasmurfie.rent_a_car_oop2.controllers.admin to javafx.fxml;
 
 
 }
