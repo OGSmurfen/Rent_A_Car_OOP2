@@ -1,5 +1,6 @@
 package com.papasmurfie.rent_a_car_oop2.controllers;
 
+import com.papasmurfie.rent_a_car_oop2.helpers.DatabaseConfig;
 import com.papasmurfie.rent_a_car_oop2.models.CarsDataModel;
 import com.papasmurfie.rent_a_car_oop2.models.ClientDataModel;
 import javafx.collections.FXCollections;
@@ -99,7 +100,7 @@ public class OperatorHomeController implements Initializable {
         //ClientsTable DB conn:
         try{
             //DriverManager.registerDriver(new org.postgresql.Driver());
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOP2", "postgres", "1");
+            Connection connection = DatabaseConfig.getConnection();
             System.out.println("Database connection for Clients table successful!");
             Statement statement = connection.createStatement();
             // Retrieve data from the database
@@ -132,7 +133,7 @@ public class OperatorHomeController implements Initializable {
         //DB connection for Cars table:
         try{
             //DriverManager.registerDriver(new org.postgresql.Driver());
-            Connection connectionCars = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOP2", "postgres", "1");
+            Connection connectionCars = DatabaseConfig.getConnection();
             System.out.println("Database connection for Cars table successful!");
             Statement statementCars = connectionCars.createStatement();
             // Retrieve data from the database
@@ -196,7 +197,7 @@ public class OperatorHomeController implements Initializable {
             String clientIdIns = InsertClientIdField.getText();
             String clientNameIns = InsertClientNameField.getText();
             //DriverManager.registerDriver(new org.postgresql.Driver());
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOP2", "postgres", "1");
+            Connection connection = DatabaseConfig.getConnection();
             System.out.println("Database connection for Clients table successful!");
             Statement statement = connection.createStatement();
             // Retrieve data from the database
@@ -244,7 +245,7 @@ public class OperatorHomeController implements Initializable {
         {
             //if YES
             try {
-                Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOP2", "postgres", "1");
+                Connection connection = DatabaseConfig.getConnection();
                 System.out.println("Connection success!");
                 PreparedStatement statement = connection.prepareStatement("DELETE FROM clients WHERE client_id = ?");
                 statement.setInt(1, selectedItem.getClientId());
@@ -272,7 +273,7 @@ public class OperatorHomeController implements Initializable {
     public void RefreshClientsButtonOnAction(ActionEvent event){
         try{
             //DriverManager.registerDriver(new org.postgresql.Driver());
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOP2", "postgres", "1");
+            Connection connection = DatabaseConfig.getConnection();
             System.out.println("Database connection for Clients table successful!");
             Statement statement = connection.createStatement();
             // Retrieve data from the database
@@ -309,7 +310,7 @@ public class OperatorHomeController implements Initializable {
     public void AddCarButtonOnAction(ActionEvent event){
         try{
             //DriverManager.registerDriver(new org.postgresql.Driver());
-            Connection connectionCars = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OOP2", "postgres", "1");
+            Connection connectionCars = DatabaseConfig.getConnection();
             System.out.println("Database connection for Cars table successful!");
             Statement statementCarsTwo = connectionCars.createStatement();
             File carImage = new File("Images/opel_corsa_2023.png");

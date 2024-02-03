@@ -18,7 +18,6 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 public class AdminOperatorsTabController implements Initializable {
-    //@FXMLs for edit operators tab
     @FXML
     private TableView<OperatorDataModel> tableView;
     @FXML

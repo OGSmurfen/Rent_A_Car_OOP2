@@ -5,7 +5,12 @@
              version="3.0">
   <persistence-unit name="Rent_a_car_OOP2">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>com.papasmurfie.rent_a_car_oop2.entities.LoginEntity</class>
+    <class>com.papasmurfie.rent_a_car_oop2.entity.User</class>
+    <class>com.papasmurfie.rent_a_car_oop2.entity.Cars</class>
+    <class>com.papasmurfie.rent_a_car_oop2.entity.Clients</class>
+    <class>com.papasmurfie.rent_a_car_oop2.entity.Company</class>
+    <class>com.papasmurfie.rent_a_car_oop2.entity.Roles</class>
+    <class>com.papasmurfie.rent_a_car_oop2.entity.Users</class>
     <properties>
       <property name="toplink.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
       <property name="toplink.jdbc.driver" value="org.postgresql.Driver"/>
@@ -14,7 +19,6 @@
       <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/postgres"/>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
       <property name="hibernate.connection.username" value="nikolaykalchev"/>
-      <property name="hibernate.connection.password" value=""/>
       <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/postgres"/>
       <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
       <property name="openjpa.ConnectionUserName" value="nikolaykalchev"/>
