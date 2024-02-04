@@ -30,6 +30,14 @@ public class Clients {
         this.clientName = clientName;
     }
 
+    public Clients() {
+    }
+
+    public Clients(String clientName) {
+
+        this.clientName = clientName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
