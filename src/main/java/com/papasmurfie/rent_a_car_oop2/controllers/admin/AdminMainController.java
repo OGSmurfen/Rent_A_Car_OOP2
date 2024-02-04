@@ -15,5 +15,6 @@ public class AdminMainController {
     public void initialize() {
         // Select the initial tab (e.g., homeTab)
         tabPane.getSelectionModel().select(homeTab);
+
     }
 }

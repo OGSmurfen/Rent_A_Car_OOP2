@@ -1,4 +1,4 @@
-package com.papasmurfie.rent_a_car_oop2.controllers.admin;
+package com.papasmurfie.rent_a_car_oop2.controllers.admin.company;
 
 import com.papasmurfie.rent_a_car_oop2.entity.Company;
 import com.papasmurfie.rent_a_car_oop2.service.CompanyService;

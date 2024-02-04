@@ -1,4 +1,4 @@
-package com.papasmurfie.rent_a_car_oop2.controllers.admin;
+package com.papasmurfie.rent_a_car_oop2.controllers.admin.company;
 
 import com.papasmurfie.rent_a_car_oop2.entity.Company;
 import com.papasmurfie.rent_a_car_oop2.repository.impl.CompanyRepositoryImpl;
@@ -9,20 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class AdminCompaniesTabFormController implements Initializable {
 
-    @FXML
-    private ImageView RefreshCompaniesImageView;
     @FXML
     private TableView<Company> CompaniesTableView;
     @FXML
@@ -82,5 +75,6 @@ public class AdminCompaniesTabFormController implements Initializable {
         Company company = new Company(companyName);
         companiesController.addCompany(company);
         companyDataList.add(company);
+        InsertCompanyNameField.setText("");
     }
 }
