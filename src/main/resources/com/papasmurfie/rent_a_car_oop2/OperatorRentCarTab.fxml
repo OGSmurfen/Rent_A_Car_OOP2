@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.OperatorRentCarTabController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="614.0">
+        <AnchorPane prefHeight="348.0" prefWidth="606.0">
+            <ComboBox fx:id="SelectClassComboBox" layoutX="339.0" layoutY="242.0" prefWidth="150.0"
+                      promptText="Select Class"/>
+            <ComboBox fx:id="SelectCategoryComboBox" layoutX="160.0" layoutY="242.0" prefWidth="150.0"
+                      promptText="Select Category"/>
+            <AnchorPane layoutX="-2.0" prefHeight="51.0" prefWidth="606.0" style="-fx-background-color: #E96151;"/>
+            <TableView fx:id="CarsTableView" layoutX="6.0" layoutY="56.0" prefHeight="158.0" prefWidth="590.0">
+                <columns>
+                    <TableColumn fx:id="CarIdColumn" prefWidth="36.80001735687256" text="car_id"/>
+                    <TableColumn fx:id="CarBrandColumn" prefWidth="83.19998550415039" text="car_brand"/>
+                    <TableColumn fx:id="CarModelColumn" prefWidth="84.0" text="car_model"/>
+                    <TableColumn fx:id="CarClassColumn" prefWidth="87.99998474121094" text="car_class"/>
+                    <TableColumn fx:id="CarCategoryColumn" prefWidth="77.60003662109375" text="car_category"/>
+                    <TableColumn fx:id="CarCharacteristicsColumn" prefWidth="72.79998779296875"
+                                 text="car_characteristics"/>
+                    <TableColumn fx:id="CarPhotoColumn" prefWidth="68.800048828125" text="car_photo"/>
+                    <TableColumn fx:id="CarSmokerColumn" prefWidth="76.00003662109373" text="car_smoker"/>
+                </columns>
+            </TableView>
+            <Button fx:id="AddCarButton" layoutX="33.0" layoutY="283.0" mnemonicParsing="false"
+                    onAction="#AddCarButtonOnAction" prefHeight="50.0" prefWidth="111.0"
+                    style="-fx-background-color: #E96151;" text="Add"/>
+        </AnchorPane>
+    </AnchorPane>
+</AnchorPane>

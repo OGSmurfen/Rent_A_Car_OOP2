@@ -5,28 +5,29 @@
              version="3.0">
   <persistence-unit name="Rent_a_car_OOP2">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>com.papasmurfie.rent_a_car_oop2.entity.User</class>
+    <class>com.papasmurfie.rent_a_car_oop2.entity.Users</class>
     <class>com.papasmurfie.rent_a_car_oop2.entity.Cars</class>
     <class>com.papasmurfie.rent_a_car_oop2.entity.Clients</class>
     <class>com.papasmurfie.rent_a_car_oop2.entity.Company</class>
     <class>com.papasmurfie.rent_a_car_oop2.entity.Roles</class>
     <class>com.papasmurfie.rent_a_car_oop2.entity.Users</class>
     <properties>
-      <property name="toplink.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+      <property name="toplink.jdbc.url" value="jdbc:postgresql://localhost:5432/OOP2"/>
       <property name="toplink.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="toplink.jdbc.user" value="nikolaykalchev"/>
-      <property name="toplink.jdbc.password" value=""/>
-      <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+      <property name="toplink.jdbc.user" value="postgres"/>
+      <property name="toplink.jdbc.password" value="1"/>
+      <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/OOP2"/>
       <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
-      <property name="hibernate.connection.username" value="nikolaykalchev"/>
-      <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/postgres"/>
+      <property name="hibernate.connection.username" value="postgres"/>
+      <property name="hibernate.connection.password" value="1"/>
+      <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/OOP2"/>
       <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
-      <property name="openjpa.ConnectionUserName" value="nikolaykalchev"/>
-      <property name="openjpa.ConnectionPassword" value=""/>
-      <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+      <property name="openjpa.ConnectionUserName" value="postgres"/>
+      <property name="openjpa.ConnectionPassword" value="1"/>
+      <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost:5432/OOP2"/>
       <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="eclipselink.jdbc.user" value="nikolaykalchev"/>
-      <property name="eclipselink.jdbc.password" value=""/>
+      <property name="eclipselink.jdbc.user" value="postgres"/>
+      <property name="eclipselink.jdbc.password" value="1"/>
       <property name="hibernate.show_sql" value="true"/>
     </properties>
   </persistence-unit>

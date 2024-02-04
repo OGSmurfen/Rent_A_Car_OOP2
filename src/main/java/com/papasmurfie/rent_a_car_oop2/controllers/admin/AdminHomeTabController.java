@@ -1,8 +1,16 @@
 package com.papasmurfie.rent_a_car_oop2.controllers.admin;
 
+import com.papasmurfie.rent_a_car_oop2.Main;
+import com.papasmurfie.rent_a_car_oop2.controllers.login.AuthenticationController;
+import com.papasmurfie.rent_a_car_oop2.controllers.login.LoginFormController;
+import com.papasmurfie.rent_a_car_oop2.repository.impl.UserRepositoryImpl;
+import com.papasmurfie.rent_a_car_oop2.service.AuthenticationService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

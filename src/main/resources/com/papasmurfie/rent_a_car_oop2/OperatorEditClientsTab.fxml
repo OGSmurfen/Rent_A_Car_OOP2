@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.OperatorEditClientsTabController"
+            prefHeight="400.0" prefWidth="600.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="408.0" prefWidth="600.0">
+            <children>
+                <TableView fx:id="ClientsTableView" layoutX="32.0" layoutY="51.0" prefHeight="200.0" prefWidth="414.0">
+                    <columns>
+                        <TableColumn fx:id="ClientIdColumn" prefWidth="116.80005264282227" text="C1" />
+                        <TableColumn fx:id="ClientNameColumn" prefWidth="243.99998474121094" text="C2" />
+                    </columns>
+                </TableView>
+                <TextField fx:id="InsertClientIdField" layoutX="46.0" layoutY="262.0" prefHeight="26.0" prefWidth="99.0" />
+                <TextField fx:id="InsertClientNameField" layoutX="196.0" layoutY="263.0" />
+                <Button fx:id="AddClientButton" layoutX="40.0" layoutY="303.0" mnemonicParsing="false" onAction="#AddClientButtonOnAction" prefHeight="44.0" prefWidth="110.0" style="-fx-background-color: #E96151;" text="Add" textFill="WHITE" />
+                <Button fx:id="DeleteClientButton" layoutX="215.0" layoutY="303.0" mnemonicParsing="false" onAction="#DeleteClientButtonOnAction" prefHeight="44.0" prefWidth="110.0" style="-fx-background-color: #E96151;" text="Delete" textFill="WHITE" />
+                <Button fx:id="RefreshClientsButton" layoutX="464.0" layoutY="85.0" mnemonicParsing="false" onAction="#RefreshClientsButtonOnAction" prefHeight="45.0" prefWidth="32.0">
+                    <graphic>
+                        <ImageView fx:id="RefreshClientsImageView" fitHeight="47.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                    </graphic>
+                </Button>
+                <AnchorPane layoutX="-5.0" layoutY="-1.0" prefHeight="42.0" prefWidth="610.0" style="-fx-background-color: #E96151;" />
+            </children>
+        </AnchorPane>
+
+</AnchorPane>

@@ -1,4 +1,4 @@
-module com.example.rent_a_car_oop2 {
+module com.papasmurfie.rent_a_car_oop2 {
 
     requires javafx.graphics;
     requires javafx.fxml;
@@ -26,6 +26,8 @@ module com.example.rent_a_car_oop2 {
     opens com.papasmurfie.rent_a_car_oop2.controllers.admin to javafx.fxml;
     exports com.papasmurfie.rent_a_car_oop2.controllers.login;
     opens com.papasmurfie.rent_a_car_oop2.controllers.login to javafx.fxml;
+    exports com.papasmurfie.rent_a_car_oop2.controllers.operator;
+    opens com.papasmurfie.rent_a_car_oop2.controllers.operator to javafx.fxml;
 
 
 }
