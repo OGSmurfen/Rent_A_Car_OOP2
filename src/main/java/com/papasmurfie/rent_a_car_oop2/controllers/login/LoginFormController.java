@@ -52,6 +52,7 @@ public class LoginFormController implements Initializable {
             loginMessageLabel.setText("Login successful");  // Update a text element with a success message
             mainController.showLoggedInView(roleId);  // Change to another view on successful login
             loginMessageLabel.setVisible(true);
+            mainController.hideLoginView();
         } else {
             // Handle unsuccessful login (e.g., show an error message)
             loginMessageLabel.setText("Login failed");

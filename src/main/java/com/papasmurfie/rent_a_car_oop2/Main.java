@@ -9,7 +9,8 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        MainController mainController = new MainController(stage);
+        MainController mainController = MainController.getInstance();
+        mainController.setPrimaryStage(stage);
         mainController.showLoginView();
     }
 

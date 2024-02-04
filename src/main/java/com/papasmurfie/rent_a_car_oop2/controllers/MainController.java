@@ -12,10 +12,25 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class MainController {
-    private final Stage primaryStage;
+    private static MainController instance;
+    private Stage primaryStage;
+    public static MainController getInstance() {
+        if (instance == null) {
+            instance = new MainController();
+        }
+        return instance;
+    }
 
-    public MainController(Stage primaryStage) {
+    private MainController() {
+
+    }
+    public void setPrimaryStage(Stage primaryStage){
+        if(this.primaryStage == null){
         this.primaryStage = primaryStage;
+        }else{
+            //TODO: log !
+            System.out.println("Primary Stage can only be set once");
+        }
     }
 
     public void showLoginView() {
@@ -29,6 +44,12 @@ public class MainController {
         } catch (Exception e) {
             e.printStackTrace(); // Should use logger
         }
+    }
+    public void hideLoginView(){
+        primaryStage.hide();
+    }
+    public void showLoginViewAgain(){
+        primaryStage.show();
     }
 
     public void showLoggedInView(int roleId) {

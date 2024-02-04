@@ -1,5 +1,6 @@
 package com.papasmurfie.rent_a_car_oop2.controllers.operator;
 
+import com.papasmurfie.rent_a_car_oop2.controllers.MainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +22,8 @@ public class OperatorHomeTabController {
 
     }
     public void CloseButtonOnAction(ActionEvent event) {
+        MainController mc = MainController.getInstance();
+        mc.showLoginViewAgain();
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
