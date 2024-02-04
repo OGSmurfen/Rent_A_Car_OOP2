@@ -1,6 +1,5 @@
 package com.papasmurfie.rent_a_car_oop2.controllers.admin;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,6 +21,10 @@ public class AdminHomeTabController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // home tab images
+        setupUI();
+    }
+
+    private void setupUI() {
         File NeoFile = new File("Images/neo.png");
         Image NeoImage = new Image(NeoFile.toURI().toString());
         Neo.setImage(NeoImage);
@@ -30,7 +33,7 @@ public class AdminHomeTabController implements Initializable {
         Morpheus.setImage(MorpheusImage);
     }
 
-    //OkButton = Logout Button
+    // OkButton = Logout Button
     public void OKbuttonOnAction() {
         Stage stage = (Stage) OKbutton.getScene().getWindow();
         stage.close();

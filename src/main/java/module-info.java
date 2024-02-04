@@ -17,15 +17,15 @@ module com.example.rent_a_car_oop2 {
     exports com.papasmurfie.rent_a_car_oop2;
     exports com.papasmurfie.rent_a_car_oop2.controllers;
     opens com.papasmurfie.rent_a_car_oop2.controllers to javafx.fxml;
-    exports com.papasmurfie.rent_a_car_oop2.models;
-    opens com.papasmurfie.rent_a_car_oop2.models to javafx.fxml;
     opens com.papasmurfie.rent_a_car_oop2.entity;
-    exports com.papasmurfie.rent_a_car_oop2.helpers;
-    opens com.papasmurfie.rent_a_car_oop2.helpers to javafx.fxml, org.hibernate.commons.annotations;
     exports com.papasmurfie.rent_a_car_oop2.controllers.admin;
     opens com.papasmurfie.rent_a_car_oop2.controllers.admin to javafx.fxml;
     exports com.papasmurfie.rent_a_car_oop2.controllers.login;
     opens com.papasmurfie.rent_a_car_oop2.controllers.login to javafx.fxml;
+    exports com.papasmurfie.rent_a_car_oop2.controllers.admin.company;
+    opens com.papasmurfie.rent_a_car_oop2.controllers.admin.company to javafx.fxml;
+    exports com.papasmurfie.rent_a_car_oop2.controllers.admin.operators;
+    opens com.papasmurfie.rent_a_car_oop2.controllers.admin.operators to javafx.fxml;
 
 
 }

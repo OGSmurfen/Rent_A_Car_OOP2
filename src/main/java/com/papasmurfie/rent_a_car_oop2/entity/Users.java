@@ -20,6 +20,15 @@ public class Users {
     @Column(name = "role_id")
     private Integer roleId;
 
+    public Users(String username, String password, Integer roleId) {
+        this.username = username;
+        this.password = password;
+        this.roleId = roleId;
+    }
+
+    public Users() {
+    }
+
     public int getUserId() {
         return userId;
     }
