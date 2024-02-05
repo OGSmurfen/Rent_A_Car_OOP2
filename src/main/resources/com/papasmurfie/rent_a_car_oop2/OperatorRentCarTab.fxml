@@ -8,31 +8,31 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.OperatorRentCarTabFormController">
+<AnchorPane prefHeight="400.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.rent_cars.OperatorRentCarTabFormController">
 
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="614.0">
         <AnchorPane prefHeight="348.0" prefWidth="606.0">
-            <ComboBox fx:id="SelectClassComboBox" layoutX="253.0" layoutY="230.0" prefHeight="25.0" prefWidth="97.0" promptText="Select Class" />
-            <ComboBox fx:id="SelectCategoryComboBox" layoutX="362.0" layoutY="230.0" prefHeight="25.0" prefWidth="121.0" promptText="Select Category" />
-            <AnchorPane layoutX="-2.0" prefHeight="51.0" prefWidth="722.0" style="-fx-background-color: #E96151;" />
+            <ComboBox fx:id="SelectClassComboBox" layoutX="249.0" layoutY="230.0" prefHeight="26.0" prefWidth="105.0" promptText="Select Class" />
+            <ComboBox fx:id="SelectCategoryComboBox" layoutX="360.0" layoutY="229.0" prefHeight="26.0" prefWidth="129.0" promptText="Select Category" />
+            <AnchorPane layoutX="-2.0" prefHeight="51.0" prefWidth="730.0" style="-fx-background-color: #E96151;" />
             <TableView fx:id="CarsTableView" layoutX="6.0" layoutY="56.0" prefHeight="158.0" prefWidth="711.0">
                 <columns>
-                    <TableColumn fx:id="CarIdColumn" prefWidth="43.0" text="car_id" />
-                    <TableColumn fx:id="CarBrandColumn" prefWidth="78.0" text="car_brand" />
+                    <TableColumn fx:id="CarIdColumn" prefWidth="37.60003662109375" text="car_id" />
+                    <TableColumn fx:id="CarBrandColumn" prefWidth="84.0" text="car_brand" />
                     <TableColumn fx:id="CarModelColumn" prefWidth="84.0" text="car_model" />
-                    <TableColumn fx:id="CarClassColumn" prefWidth="87.99998474121094" text="car_class" />
-                    <TableColumn fx:id="CarCategoryColumn" prefWidth="117.0" text="car_category" />
-                    <TableColumn fx:id="CarCharacteristicsColumn" prefWidth="222.0" text="car_characteristics" />
-                    <TableColumn fx:id="CarSmokerColumn" prefWidth="71.0" text="car_smoker" />
+                    <TableColumn fx:id="CarClassColumn" prefWidth="79.20001220703125" text="car_class" />
+                    <TableColumn fx:id="CarCategoryColumn" prefWidth="93.5999755859375" text="car_category" />
+                    <TableColumn fx:id="CarCharacteristicsColumn" prefWidth="256.0" text="car_characteristics" />
+                    <TableColumn fx:id="CarSmokerColumn" prefWidth="71.2000732421875" text="car_smoker" />
                 </columns>
             </TableView>
             <Button fx:id="AddCarButton" layoutX="36.0" layoutY="284.0" mnemonicParsing="false" onAction="#AddCarButtonOnAction" prefHeight="50.0" prefWidth="111.0" style="-fx-background-color: #E96151;" text="Add" />
          <Button fx:id="DeleteCarButton" layoutX="160.0" layoutY="284.0" mnemonicParsing="false" onAction="#DeleteCarButtonOnAction" prefHeight="50.0" prefWidth="111.0" style="-fx-background-color: #E96151;" text="Delete" />
          <Button fx:id="RentCarButton" layoutX="573.0" layoutY="284.0" mnemonicParsing="false" onAction="#RentCarButtonOnAction" prefHeight="50.0" prefWidth="111.0" style="-fx-background-color: #E96151;" text="Rent" />
-         <ComboBox fx:id="SelectBrandComboBox" layoutX="39.0" layoutY="230.0" prefHeight="25.0" prefWidth="105.0" promptText="Select Brand" />
-         <TextField layoutX="154.0" layoutY="230.0" prefHeight="25.0" prefWidth="90.0" />
-         <TextField layoutX="493.0" layoutY="230.0" prefHeight="25.0" prefWidth="121.0" />
-         <CheckBox layoutX="629.0" layoutY="234.0" mnemonicParsing="false" text="Smoker" />
+         <ComboBox fx:id="SelectBrandComboBox" layoutX="23.0" layoutY="230.0" prefHeight="26.0" prefWidth="122.0" promptText="Select Brand" />
+         <TextField fx:id="insertCarModelTextField" layoutX="154.0" layoutY="230.0" prefHeight="25.0" prefWidth="90.0" promptText="Model" />
+         <TextField fx:id="carCharacteristicsTextField" layoutX="493.0" layoutY="230.0" prefHeight="25.0" prefWidth="121.0" promptText="Characteristics" />
+         <CheckBox fx:id="smokerCheckButton" layoutX="629.0" layoutY="234.0" mnemonicParsing="false" text="Smoker" />
         </AnchorPane>
     </AnchorPane>
 </AnchorPane>

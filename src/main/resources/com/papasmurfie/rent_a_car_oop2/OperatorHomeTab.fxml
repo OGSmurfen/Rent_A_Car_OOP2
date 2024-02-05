@@ -6,16 +6,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="408.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/20.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.OperatorHomeTabController">
+<AnchorPane prefHeight="408.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.OperatorHomeTabController">
 
-    <ImageView fx:id="SmithImageView" fitHeight="150.0" fitWidth="200.0" layoutX="181.0" layoutY="111.0"
-               pickOnBounds="true" preserveRatio="true">
-        <Image url="@../../../../../../Images/TV-Smith-icon.png"/>
+    <ImageView fx:id="SmithImageView" fitHeight="150.0" fitWidth="200.0" layoutX="181.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../../../../../../Images/TV-Smith-icon.png" />
     </ImageView>
-    <Label layoutX="203.0" layoutY="53.0" text="Operator home!!"/>
-    <Button fx:id="closeButton" layoutX="202.0" layoutY="282.0" mnemonicParsing="false" onAction="#CloseButtonOnAction"
-            prefHeight="46.0" prefWidth="89.0" style="-fx-background-color: #E96151;" text="Close" textFill="WHITE"/>
-    <AnchorPane prefHeight="38.0" prefWidth="566.0" style="-fx-background-color: #E96151;"/>
+    <Label layoutX="203.0" layoutY="53.0" text="Operator home!!" />
+    <Button fx:id="closeButton" layoutX="202.0" layoutY="282.0" mnemonicParsing="false" onAction="#CloseButtonOnAction" prefHeight="46.0" prefWidth="89.0" style="-fx-background-color: #E96151;" text="Logout" textFill="WHITE" />
+    <AnchorPane prefHeight="38.0" prefWidth="900.0" style="-fx-background-color: #E96151;" />
 </AnchorPane>

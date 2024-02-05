@@ -15,6 +15,14 @@ public class CarBrand {
     @Column(name = "name")
     private String name;
 
+    public CarBrand() {
+
+    }
+
+    public CarBrand(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

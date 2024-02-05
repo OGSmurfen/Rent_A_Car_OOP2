@@ -14,6 +14,11 @@ public class CarCategory {
     @Basic
     @Column(name = "name")
     private String name;
+    public CarCategory() {
+    }
+    public CarCategory(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;

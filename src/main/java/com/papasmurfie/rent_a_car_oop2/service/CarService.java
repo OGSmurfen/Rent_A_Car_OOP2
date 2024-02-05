@@ -1,6 +1,8 @@
 package com.papasmurfie.rent_a_car_oop2.service;
 
 import com.papasmurfie.rent_a_car_oop2.entity.CarBrand;
+import com.papasmurfie.rent_a_car_oop2.entity.CarCategory;
+import com.papasmurfie.rent_a_car_oop2.entity.CarClass;
 import com.papasmurfie.rent_a_car_oop2.entity.Cars;
 import com.papasmurfie.rent_a_car_oop2.repository.CarRepository;
 
@@ -28,5 +30,22 @@ public class CarService {
 
     public List<CarBrand> findAllBrands() {
         return carRepository.findAllBrands();
+    }
+    public CarBrand findBrand(String brandName){
+        return carRepository.findBrand(brandName);
+    }
+    public List<CarClass> findAllClasses(){
+        return carRepository.findAllClasses();
+    }
+    public List<CarCategory> findAllCategories(){
+        return carRepository.findAllCategories();
+    }
+
+    public CarClass findCarClass(String carClass) {
+        return carRepository.findCarClass(carClass);
+    }
+
+    public CarCategory findCarCategory(String carCategory) {
+        return carRepository.findCarCategory(carCategory);
     }
 }

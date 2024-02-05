@@ -30,6 +30,11 @@ public class CarClass {
     public void setName(String name) {
         this.name = name;
     }
+    public CarClass() {
+    }
+    public CarClass(String name) {
+        this.name = name;
+    }
 
     @Override
     public boolean equals(Object o) {

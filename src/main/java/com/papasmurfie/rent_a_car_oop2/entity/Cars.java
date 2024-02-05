@@ -34,6 +34,21 @@ public class Cars {
     @Column(name = "smoker")
     private boolean smoker;
 
+    public Cars() {
+
+    }
+
+    public Cars(CarBrand carBrand, String model, CarClass carClass,
+                CarCategory carCategory, String characteristics, String images, boolean smoker) {
+        this.carBrand = carBrand;
+        this.model = model;
+        this.carClass = carClass;
+        this.carCategory = carCategory;
+        this.characteristics = characteristics;
+        this.images = images;
+        this.smoker = smoker;
+    }
+
     public int getId() {
         return id;
     }
