@@ -2,99 +2,100 @@ package com.papasmurfie.rent_a_car_oop2.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
 public class Cars {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "car_id")
-    private int carId;
-    @Basic
-    @Column(name = "car_brand")
-    private String carBrand;
-    @Basic
-    @Column(name = "car_model")
-    private String carModel;
-    @Basic
-    @Column(name = "car_class")
-    private String carClass;
-    @Basic
-    @Column(name = "car_category")
-    private String carCategory;
-    @Basic
-    @Column(name = "car_characteristics")
-    private String carCharacteristics;
-    @Basic
-    @Column(name = "car_photo")
-    private byte[] carPhoto;
-    @Basic
-    @Column(name = "car_smoker")
-    private String carSmoker;
+    @Column(name = "id")
+    private int id;
 
-    public int getCarId() {
-        return carId;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "brand_id")
+    private CarBrand carBrand;
+    @Basic
+    @Column(name = "model")
+    private String model;
+
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "class_id")
+    private CarClass carClass;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private CarCategory carCategory;
+    @Basic
+    @Column(name = "characteristics")
+    private String characteristics;
+    @Basic
+    @Column(name = "images")
+    private String images;
+    @Basic
+    @Column(name = "smoker")
+    private boolean smoker;
+
+    public int getId() {
+        return id;
     }
 
-    public void setCarId(int carId) {
-        this.carId = carId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getCarBrand() {
+    public CarBrand getCarBrand() {
         return carBrand;
     }
 
-    public void setCarBrand(String carBrand) {
+    public void setCarBrand(CarBrand carBrand) {
         this.carBrand = carBrand;
     }
 
-    public String getCarModel() {
-        return carModel;
+    public String getModel() {
+        return model;
     }
 
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public String getCarClass() {
+    public CarClass getCarClass() {
         return carClass;
     }
 
-    public void setCarClass(String carClass) {
+    public void setCarClass(CarClass carClass) {
         this.carClass = carClass;
     }
 
-    public String getCarCategory() {
+    public CarCategory getCarCategory() {
         return carCategory;
     }
 
-    public void setCarCategory(String carCategory) {
+    public void setCarCategory(CarCategory carCategory) {
         this.carCategory = carCategory;
     }
 
-    public String getCarCharacteristics() {
-        return carCharacteristics;
+    public String getCharacteristics() {
+        return characteristics;
     }
 
-    public void setCarCharacteristics(String carCharacteristics) {
-        this.carCharacteristics = carCharacteristics;
+    public void setCharacteristics(String characteristics) {
+        this.characteristics = characteristics;
     }
 
-    public byte[] getCarPhoto() {
-        return carPhoto;
+    public String getImages() {
+        return images;
     }
 
-    public void setCarPhoto(byte[] carPhoto) {
-        this.carPhoto = carPhoto;
+    public void setImages(String images) {
+        this.images = images;
     }
 
-    public String getCarSmoker() {
-        return carSmoker;
+    public boolean isSmoker() {
+        return smoker;
     }
 
-    public void setCarSmoker(String carSmoker) {
-        this.carSmoker = carSmoker;
+    public void setSmoker(boolean smoker) {
+        this.smoker = smoker;
     }
 
     @Override
@@ -102,13 +103,11 @@ public class Cars {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cars cars = (Cars) o;
-        return carId == cars.carId && Objects.equals(carBrand, cars.carBrand) && Objects.equals(carModel, cars.carModel) && Objects.equals(carClass, cars.carClass) && Objects.equals(carCategory, cars.carCategory) && Objects.equals(carCharacteristics, cars.carCharacteristics) && Arrays.equals(carPhoto, cars.carPhoto) && Objects.equals(carSmoker, cars.carSmoker);
+        return id == cars.id && smoker == cars.smoker && Objects.equals(carBrand, cars.carBrand) && Objects.equals(model, cars.model) && Objects.equals(carClass, cars.carClass) && Objects.equals(carCategory, cars.carCategory) && Objects.equals(characteristics, cars.characteristics) && Objects.equals(images, cars.images);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(carId, carBrand, carModel, carClass, carCategory, carCharacteristics, carSmoker);
-        result = 31 * result + Arrays.hashCode(carPhoto);
-        return result;
+        return Objects.hash(id, carBrand, model, carClass, carCategory, characteristics, images, smoker);
     }
 }

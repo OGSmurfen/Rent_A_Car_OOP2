@@ -65,7 +65,7 @@ public class MainController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("OperatorMain.fxml"));
             Stage operatorStage = new Stage();
-            Scene scene = new Scene(fxmlLoader.load(), 520, 447);
+            Scene scene = new Scene(fxmlLoader.load());
             operatorStage.initStyle(StageStyle.UNDECORATED);
             operatorStage.setScene(scene);
             operatorStage.show();
