@@ -20,7 +20,7 @@ public class CarRepositoryImpl implements CarRepository {
     }
     @Override
     public List<Cars> findAll() {
-        return entityManager.createQuery("SELECT c FROM Cars c", Cars.class).getResultList();
+        return entityManager.createQuery("SELECT c FROM Cars c ORDER BY id ASC ", Cars.class).getResultList();
     }
 
     public List<CarBrand> findAllBrands() {
