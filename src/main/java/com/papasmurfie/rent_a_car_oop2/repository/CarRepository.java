@@ -24,4 +24,6 @@ public interface CarRepository {
     CarClass findCarClass(String carClass);
 
     CarCategory findCarCategory(String carCategory);
+
+    List<Cars> findAvailableCars(boolean selected);
 }

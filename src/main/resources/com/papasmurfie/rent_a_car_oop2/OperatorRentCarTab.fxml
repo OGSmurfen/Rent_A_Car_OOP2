@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -29,11 +30,13 @@
             </TableView>
             <Button fx:id="AddCarButton" layoutX="36.0" layoutY="284.0" mnemonicParsing="false" onAction="#AddCarButtonOnAction" prefHeight="50.0" prefWidth="111.0" style="-fx-background-color: #E96151;" text="Add" />
          <Button fx:id="DeleteCarButton" layoutX="160.0" layoutY="284.0" mnemonicParsing="false" onAction="#DeleteCarButtonOnAction" prefHeight="50.0" prefWidth="111.0" style="-fx-background-color: #E96151;" text="Delete" />
-         <Button fx:id="RentCarButton" layoutX="573.0" layoutY="284.0" mnemonicParsing="false" onAction="#RentCarButtonOnAction" prefHeight="50.0" prefWidth="111.0" style="-fx-background-color: #E96151;" text="Rent" />
+         <Button fx:id="RentCarButton" layoutX="573.0" layoutY="284.0" mnemonicParsing="false" onAction="#RentCarButtonOnAction" prefHeight="50.0" prefWidth="111.0" style="-fx-background-color: #E96151;" text="Rent/Return" />
          <ComboBox fx:id="SelectBrandComboBox" layoutX="23.0" layoutY="230.0" prefHeight="26.0" prefWidth="122.0" promptText="Select Brand" />
          <TextField fx:id="insertCarModelTextField" layoutX="154.0" layoutY="230.0" prefHeight="25.0" prefWidth="90.0" promptText="Model" />
          <TextField fx:id="carCharacteristicsTextField" layoutX="493.0" layoutY="230.0" prefHeight="25.0" prefWidth="121.0" promptText="Characteristics" />
          <CheckBox fx:id="smokerCheckButton" layoutX="629.0" layoutY="234.0" mnemonicParsing="false" text="Smoker" />
         </AnchorPane>
     </AnchorPane>
+   <CheckBox fx:id="availableCarsCheckBox" layoutX="93.0" layoutY="354.0" mnemonicParsing="false" onAction="#onAvailableCarsCheckboxChecked" text="Available Cars" />
+   <Label layoutX="32.0" layoutY="354.0" text="Filter:" />
 </AnchorPane>

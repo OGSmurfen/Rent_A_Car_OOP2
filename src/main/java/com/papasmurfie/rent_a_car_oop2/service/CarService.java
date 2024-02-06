@@ -53,4 +53,8 @@ public class CarService {
     public Cars updateCar(Cars selectedCar) {
         return carRepository.updateCar(selectedCar);
     }
+
+    public List<Cars> findAvailableCars(boolean selected) {
+        return carRepository.findAvailableCars(selected);
+    }
 }

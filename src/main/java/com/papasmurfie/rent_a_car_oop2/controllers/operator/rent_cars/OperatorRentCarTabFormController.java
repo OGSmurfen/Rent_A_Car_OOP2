@@ -6,6 +6,7 @@ import com.papasmurfie.rent_a_car_oop2.service.CarService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,6 +21,7 @@ public class OperatorRentCarTabFormController {
     public TextField carCharacteristicsTextField;
     public CheckBox smokerCheckButton;
     public TableColumn isRentedColumn;
+    public CheckBox availableCarsCheckBox;
     @FXML
     private ComboBox SelectClassComboBox;
     @FXML
@@ -85,6 +87,13 @@ public class OperatorRentCarTabFormController {
 
     private  void populateTable() {
         List<Cars> carsList = carController.findAll();
+        if(carsDataList != null){carsDataList.clear();}
+        carsDataList = FXCollections.observableArrayList(carsList);
+        CarsTableView.setItems(carsDataList);
+        setupColumns();
+    }
+    private  void populateTable(List<Cars> carsList) {
+        //List<Cars> carsList = carController.findAll();
         if(carsDataList != null){carsDataList.clear();}
         carsDataList = FXCollections.observableArrayList(carsList);
         CarsTableView.setItems(carsDataList);
@@ -165,5 +174,17 @@ public class OperatorRentCarTabFormController {
         //select same row
         CarsTableView.getSelectionModel().select(selectedRow);
         CarsTableView.getFocusModel().focus(selectedRow);
+    }
+
+    public void onAvailableCarsCheckboxChecked(ActionEvent event) {
+        if(availableCarsCheckBox.isSelected()) {
+            List<Cars> carsList = carController.findAvailableCars(!availableCarsCheckBox.isSelected());
+            populateTable(carsList);
+        }
+        if(!availableCarsCheckBox.isSelected()){
+            List<Cars> carsList = carController.findAll();
+            populateTable(carsList);
+        }
+
     }
 }

@@ -12,8 +12,8 @@
             <children>
                 <TableView fx:id="ClientsTableView" layoutX="32.0" layoutY="51.0" prefHeight="200.0" prefWidth="414.0">
                     <columns>
-                        <TableColumn fx:id="ClientIdColumn" prefWidth="116.80005264282227" text="C1" />
-                        <TableColumn fx:id="ClientNameColumn" prefWidth="243.99998474121094" text="C2" />
+                        <TableColumn fx:id="ClientIdColumn" prefWidth="116.80005264282227" text="Client Id" />
+                        <TableColumn fx:id="ClientNameColumn" prefWidth="295.99999084472654" text="Client Name" />
                     </columns>
                 </TableView>
                 <TextField fx:id="InsertClientNameField" layoutX="196.0" layoutY="263.0" />

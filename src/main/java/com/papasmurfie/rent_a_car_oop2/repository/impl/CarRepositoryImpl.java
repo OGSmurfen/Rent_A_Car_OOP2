@@ -76,6 +76,20 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     @Override
+    public List<Cars> findAvailableCars(boolean selected) {
+        try {
+            TypedQuery<Cars> query = entityManager.createQuery(
+                    "SELECT c FROM Cars c WHERE c.isrented = :isrented", Cars.class);
+            query.setParameter("isrented", selected);
+
+            return query.getResultList();
+        } catch (NoResultException e) {
+            // Handle the case where no result is found (optional)
+            return null;
+        }
+    }
+
+    @Override
     public void addCar(Cars car) {
         entityManager.getTransaction().begin();
         entityManager.persist(car);
