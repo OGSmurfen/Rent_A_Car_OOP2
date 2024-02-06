@@ -90,13 +90,36 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     @Override
-    public void updateCar(Cars car) {
+    public Cars updateCar(Cars car) {
+        Cars existingCar = findById(car.getId());
+        if(existingCar != null){
+            entityManager.getTransaction().begin();
+            existingCar.setCarBrand(car.getCarBrand());
+            existingCar.setModel(car.getModel());
+            existingCar.setCarClass(car.getCarClass());
+            existingCar.setCarCategory(car.getCarCategory());
+            existingCar.setCharacteristics(car.getCharacteristics());
+            existingCar.setSmoker(car.isSmoker());
+            existingCar.setIsrented(car.isIsrented());
 
+            existingCar = entityManager.merge(existingCar);
+            entityManager.getTransaction().commit();
+        }
+        return existingCar;
     }
 
     @Override
     public Cars findById(int id) {
-        return null;
+        try {
+            TypedQuery<Cars> query = entityManager.createQuery(
+                    "SELECT c FROM Cars c WHERE c.id = :id", Cars.class);
+            query.setParameter("id", id);
+
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            // Handle the case where no result is found (optional)
+            return null;
+        }
     }
 
     @Override

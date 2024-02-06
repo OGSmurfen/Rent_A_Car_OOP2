@@ -19,6 +19,7 @@ public class OperatorRentCarTabFormController {
     public TextField insertCarModelTextField;
     public TextField carCharacteristicsTextField;
     public CheckBox smokerCheckButton;
+    public TableColumn isRentedColumn;
     @FXML
     private ComboBox SelectClassComboBox;
     @FXML
@@ -84,6 +85,7 @@ public class OperatorRentCarTabFormController {
 
     private  void populateTable() {
         List<Cars> carsList = carController.findAll();
+        if(carsDataList != null){carsDataList.clear();}
         carsDataList = FXCollections.observableArrayList(carsList);
         CarsTableView.setItems(carsDataList);
         setupColumns();
@@ -97,6 +99,7 @@ public class OperatorRentCarTabFormController {
         CarCategoryColumn.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue().getCarCategory().getName()));
         CarCharacteristicsColumn.setCellValueFactory(new PropertyValueFactory<>("characteristics"));
         CarSmokerColumn.setCellValueFactory(new PropertyValueFactory<>("smoker"));
+        isRentedColumn.setCellValueFactory(new PropertyValueFactory<>("isrented"));
     }
     public void AddCarButtonOnAction() {
 //if Insert TextField(s) empty -> Alert
@@ -115,9 +118,12 @@ public class OperatorRentCarTabFormController {
                 carController.findCarCategory((String) SelectCategoryComboBox.getValue()),
                 carCharacteristicsTextField.getText(),
                 "none",
-                smoker);
+                smoker,
+                false);
         carController.addCar(car);
         carsDataList.add(car);
+
+
         smokerCheckButton.setSelected(false);
         SelectBrandComboBox.setValue(null);
         SelectCategoryComboBox.setValue(null);
@@ -144,6 +150,20 @@ public class OperatorRentCarTabFormController {
     }
 
     public void RentCarButtonOnAction() {
+        Cars selectedCar = (Cars) CarsTableView.getSelectionModel().getSelectedItem();
+        int selectedRow = CarsTableView.getSelectionModel().getSelectedIndex();
+        if(selectedCar == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a row from TableView", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
 
+        selectedCar.setIsrented(!selectedCar.isIsrented());
+        carController.updateCar(selectedCar);
+
+        populateTable();
+        //select same row
+        CarsTableView.getSelectionModel().select(selectedRow);
+        CarsTableView.getFocusModel().focus(selectedRow);
     }
 }

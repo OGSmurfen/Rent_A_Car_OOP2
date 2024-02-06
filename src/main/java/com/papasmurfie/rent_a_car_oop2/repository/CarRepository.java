@@ -11,12 +11,11 @@ public interface CarRepository {
     List<Cars> findAll();
     void addCar(Cars car);
     void deleteCar(Cars car);
-    void updateCar(Cars car);
+    Cars updateCar(Cars car);
     Cars findById(int id);
     List<Cars> findByBrand(String brand);
     List<Cars> findByModel(String model);
     List<Cars> findByYear(int year);
-
     List<CarBrand> findAllBrands();
     List<CarClass> findAllClasses();
     List<CarCategory> findAllCategories();

@@ -48,4 +48,9 @@ public class CarService {
     public CarCategory findCarCategory(String carCategory) {
         return carRepository.findCarCategory(carCategory);
     }
+
+
+    public Cars updateCar(Cars selectedCar) {
+        return carRepository.updateCar(selectedCar);
+    }
 }

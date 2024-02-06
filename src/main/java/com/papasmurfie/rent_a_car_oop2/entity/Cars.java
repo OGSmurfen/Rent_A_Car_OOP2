@@ -33,13 +33,16 @@ public class Cars {
     @Basic
     @Column(name = "smoker")
     private boolean smoker;
+    @Basic
+    @Column(name = "isrented")
+    private boolean isrented;
 
     public Cars() {
 
     }
 
     public Cars(CarBrand carBrand, String model, CarClass carClass,
-                CarCategory carCategory, String characteristics, String images, boolean smoker) {
+                CarCategory carCategory, String characteristics, String images, boolean smoker, boolean isrented) {
         this.carBrand = carBrand;
         this.model = model;
         this.carClass = carClass;
@@ -47,6 +50,7 @@ public class Cars {
         this.characteristics = characteristics;
         this.images = images;
         this.smoker = smoker;
+        this.isrented = isrented;
     }
 
     public int getId() {
@@ -113,16 +117,24 @@ public class Cars {
         this.smoker = smoker;
     }
 
+    public boolean isIsrented() {
+        return isrented;
+    }
+
+    public void setIsrented(boolean isrented) {
+        this.isrented = isrented;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cars cars = (Cars) o;
-        return id == cars.id && smoker == cars.smoker && Objects.equals(carBrand, cars.carBrand) && Objects.equals(model, cars.model) && Objects.equals(carClass, cars.carClass) && Objects.equals(carCategory, cars.carCategory) && Objects.equals(characteristics, cars.characteristics) && Objects.equals(images, cars.images);
+        return id == cars.id && smoker == cars.smoker && isrented== cars.isrented && Objects.equals(carBrand, cars.carBrand) && Objects.equals(model, cars.model) && Objects.equals(carClass, cars.carClass) && Objects.equals(carCategory, cars.carCategory) && Objects.equals(characteristics, cars.characteristics) && Objects.equals(images, cars.images);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, carBrand, model, carClass, carCategory, characteristics, images, smoker);
+        return Objects.hash(id, carBrand, model, carClass, carCategory, characteristics, images, smoker, isrented);
     }
 }

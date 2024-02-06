@@ -17,13 +17,14 @@
             <AnchorPane layoutX="-2.0" prefHeight="51.0" prefWidth="730.0" style="-fx-background-color: #E96151;" />
             <TableView fx:id="CarsTableView" layoutX="6.0" layoutY="56.0" prefHeight="158.0" prefWidth="711.0">
                 <columns>
-                    <TableColumn fx:id="CarIdColumn" prefWidth="37.60003662109375" text="car_id" />
-                    <TableColumn fx:id="CarBrandColumn" prefWidth="84.0" text="car_brand" />
-                    <TableColumn fx:id="CarModelColumn" prefWidth="84.0" text="car_model" />
-                    <TableColumn fx:id="CarClassColumn" prefWidth="79.20001220703125" text="car_class" />
-                    <TableColumn fx:id="CarCategoryColumn" prefWidth="93.5999755859375" text="car_category" />
-                    <TableColumn fx:id="CarCharacteristicsColumn" prefWidth="256.0" text="car_characteristics" />
-                    <TableColumn fx:id="CarSmokerColumn" prefWidth="71.2000732421875" text="car_smoker" />
+                    <TableColumn fx:id="CarIdColumn" prefWidth="22.4000244140625" text="Id" />
+                    <TableColumn fx:id="CarBrandColumn" prefWidth="63.999969482421875" text="Brand" />
+                    <TableColumn fx:id="CarModelColumn" prefWidth="84.0" text="Model" />
+                    <TableColumn fx:id="CarClassColumn" prefWidth="79.199951171875" text="Class" />
+                    <TableColumn fx:id="CarCategoryColumn" prefWidth="88.0" text="Category" />
+                    <TableColumn fx:id="CarCharacteristicsColumn" prefWidth="248.0" text="Characteristics" />
+                    <TableColumn fx:id="CarSmokerColumn" prefWidth="65.60003662109375" text="Smoking" />
+               <TableColumn fx:id="isRentedColumn" prefWidth="60.79998779296875" text="IsRented" />
                 </columns>
             </TableView>
             <Button fx:id="AddCarButton" layoutX="36.0" layoutY="284.0" mnemonicParsing="false" onAction="#AddCarButtonOnAction" prefHeight="50.0" prefWidth="111.0" style="-fx-background-color: #E96151;" text="Add" />
