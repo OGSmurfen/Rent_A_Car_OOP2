@@ -1,4 +1,4 @@
-package com.papasmurfie.rent_a_car_oop2.controllers.operator.rent_cars;
+package com.papasmurfie.rent_a_car_oop2.controllers.operator.cars;
 
 import com.papasmurfie.rent_a_car_oop2.entity.*;
 import com.papasmurfie.rent_a_car_oop2.repository.impl.CarRepositoryImpl;
@@ -22,6 +22,11 @@ public class OperatorRentCarTabFormController {
     public CheckBox smokerCheckButton;
     public TableColumn isRentedColumn;
     public CheckBox availableCarsCheckBox;
+    public TableColumn rentedDateColumn;
+    public TableColumn returnedDateColumn;
+    public TableColumn kmColumn;
+    public TableColumn descrTajkeColumn;
+    public TableColumn descriptionReturnColumn;
     @FXML
     private ComboBox SelectClassComboBox;
     @FXML
@@ -48,6 +53,27 @@ public class OperatorRentCarTabFormController {
     public void initialize() {
         populateTable();
         populateComboBoxes();
+
+        CarsTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) { // Check for a single click
+
+                Cars selectedCar = CarsTableView.getSelectionModel().getSelectedItem();
+
+                if (selectedCar != null) {
+                    if(selectedCar.isIsrented()){
+                        RentCarButton.setText("Return");
+                    }
+                    if(!selectedCar.isIsrented()){
+                        RentCarButton.setText("Rent");
+                    }
+                }
+
+                if(selectedCar == null){
+                    RentCarButton.setText("Rent/Return");
+                }
+            }
+
+        });
     }
 
     private void populateComboBoxes() {
@@ -165,6 +191,13 @@ public class OperatorRentCarTabFormController {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a row from TableView", ButtonType.OK);
             alert.showAndWait();
             return;
+        }
+
+        if(RentCarButton.getText().equals("Rent"))
+        {
+            RentCarButton.setText("Return");
+        }else if(RentCarButton.getText().equals("Return")){
+            RentCarButton.setText("Rent");
         }
 
         selectedCar.setIsrented(!selectedCar.isIsrented());

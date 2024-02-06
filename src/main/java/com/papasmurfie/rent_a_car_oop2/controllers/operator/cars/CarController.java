@@ -1,4 +1,4 @@
-package com.papasmurfie.rent_a_car_oop2.controllers.operator.rent_cars;
+package com.papasmurfie.rent_a_car_oop2.controllers.operator.cars;
 
 import com.papasmurfie.rent_a_car_oop2.entity.CarBrand;
 import com.papasmurfie.rent_a_car_oop2.entity.CarCategory;

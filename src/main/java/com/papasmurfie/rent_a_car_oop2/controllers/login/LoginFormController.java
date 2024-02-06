@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -74,6 +75,11 @@ public class LoginFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setupUI();
+        enterPasswordField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                loginButtonOnAction();  // Call your login method when Enter is pressed
+            }
+        });
     }
 
     public void setupUI() {

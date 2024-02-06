@@ -32,8 +32,10 @@ module com.papasmurfie.rent_a_car_oop2 {
     opens com.papasmurfie.rent_a_car_oop2.controllers.admin.operators to javafx.fxml;
     exports com.papasmurfie.rent_a_car_oop2.controllers.operator.clients;
     opens com.papasmurfie.rent_a_car_oop2.controllers.operator.clients to javafx.fxml;
-    exports com.papasmurfie.rent_a_car_oop2.controllers.operator.rent_cars;
-    opens com.papasmurfie.rent_a_car_oop2.controllers.operator.rent_cars to javafx.fxml;
+    exports com.papasmurfie.rent_a_car_oop2.controllers.operator.cars;
+    opens com.papasmurfie.rent_a_car_oop2.controllers.operator.cars to javafx.fxml;
+    exports com.papasmurfie.rent_a_car_oop2.controllers.operator.rents;
+    opens com.papasmurfie.rent_a_car_oop2.controllers.operator.rents to javafx.fxml;
 
 
 }

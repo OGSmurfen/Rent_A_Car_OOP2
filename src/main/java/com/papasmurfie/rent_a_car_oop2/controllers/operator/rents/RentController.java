@@ -1,4 +1,4 @@
-package com.papasmurfie.rent_a_car_oop2.controllers.operator.rent_cars;
+package com.papasmurfie.rent_a_car_oop2.controllers.operator.rents;
 
 import com.papasmurfie.rent_a_car_oop2.entity.Rents;
 import com.papasmurfie.rent_a_car_oop2.service.RentsService;
