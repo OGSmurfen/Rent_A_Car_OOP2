@@ -22,11 +22,12 @@ public class OperatorRentCarTabFormController {
     public CheckBox smokerCheckButton;
     public TableColumn isRentedColumn;
     public CheckBox availableCarsCheckBox;
-    public TableColumn rentedDateColumn;
-    public TableColumn returnedDateColumn;
-    public TableColumn kmColumn;
-    public TableColumn descrTajkeColumn;
-    public TableColumn descriptionReturnColumn;
+    public DatePicker dateRentedField;
+    public TextField descriptionTakeField;
+    public TextField kmTextField;
+    public TextField descriptionReturnField;
+    public DatePicker dateReturnedField;
+
     @FXML
     private ComboBox SelectClassComboBox;
     @FXML
@@ -187,14 +188,23 @@ public class OperatorRentCarTabFormController {
     public void RentCarButtonOnAction() {
         Cars selectedCar = (Cars) CarsTableView.getSelectionModel().getSelectedItem();
         int selectedRow = CarsTableView.getSelectionModel().getSelectedIndex();
-        if(selectedCar == null){
+
+        if(selectedCar == null){//no car selected
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a row from TableView", ButtonType.OK);
             alert.showAndWait();
             return;
         }
-
-        if(RentCarButton.getText().equals("Rent"))
-        {
+        if((dateReturnedField.getValue()==null || descriptionReturnField.getText()==null)&&selectedCar.isIsrented()){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in date and description of return", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+        if((dateRentedField.getValue()==null || descriptionTakeField.getText()==null)&&!selectedCar.isIsrented()){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in date and description of take", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+        if(RentCarButton.getText().equals("Rent")) {
             RentCarButton.setText("Return");
         }else if(RentCarButton.getText().equals("Return")){
             RentCarButton.setText("Rent");

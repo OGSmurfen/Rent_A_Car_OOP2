@@ -7,16 +7,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="447.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.admin.company.AdminCompaniesTabFormController">
+<AnchorPane prefHeight="447.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.admin.company.AdminCompaniesTabFormController">
     <TableView fx:id="CompaniesTableView" layoutX="67.0" layoutY="41.0" prefHeight="200.0" prefWidth="383.0">
         <columns>
-            <TableColumn fx:id="CompanyIdColumn" prefWidth="74.4000244140625" text="company_id" />
-            <TableColumn fx:id="CompanyNameColumn" minWidth="0.0" prefWidth="146.39996337890625" text="company_name" />
+            <TableColumn fx:id="CompanyIdColumn" prefWidth="96.0" text="company_id" />
+            <TableColumn fx:id="CompanyNameColumn" minWidth="0.0" prefWidth="287.99998474121094" text="company_name" />
         </columns>
     </TableView>
-    <TextField fx:id="InsertCompanyNameField" layoutX="165.0" layoutY="253.0" prefHeight="26.0" prefWidth="131.0" />
-    <Button fx:id="AddCompanyButton" layoutX="67.0" layoutY="300.0" mnemonicParsing="false" onAction="#AddCompanyButtonOnAction" prefHeight="43.0" prefWidth="111.0" style="-fx-background-color: #E96151;" text="Add" textFill="WHITE" />
-    <Button fx:id="DeleteCompanyButton" layoutX="218.0" layoutY="300.0" mnemonicParsing="false" onAction="#DeleteCompanyButtonOnAction" prefHeight="44.0" prefWidth="110.0" style="-fx-background-color: #E96151;" text="Delete" textFill="WHITE" />
+    <TextField fx:id="InsertCompanyNameField" layoutX="245.0" layoutY="253.0" prefHeight="26.0" prefWidth="131.0" />
+    <Button fx:id="AddCompanyButton" layoutX="101.0" layoutY="300.0" mnemonicParsing="false" onAction="#AddCompanyButtonOnAction" prefHeight="43.0" prefWidth="111.0" style="-fx-background-color: #E96151;" text="Add" textFill="WHITE" />
+    <Button fx:id="DeleteCompanyButton" layoutX="321.0" layoutY="300.0" mnemonicParsing="false" onAction="#DeleteCompanyButtonOnAction" prefHeight="44.0" prefWidth="110.0" style="-fx-background-color: #E96151;" text="Delete" textFill="WHITE" />
     <AnchorPane layoutX="-1.0" layoutY="1.0" prefHeight="32.0" prefWidth="520.0" style="-fx-background-color: #E96151;" />
-   <Label layoutX="67.0" layoutY="258.0" text="Company name:" />
+   <Label layoutX="101.0" layoutY="257.0" text="Company name:" />
 </AnchorPane>

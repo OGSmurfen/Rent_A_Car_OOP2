@@ -8,19 +8,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.clients.OperatorEditClientsTabController">
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="408.0" prefWidth="906.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="408.0" prefWidth="1146.0">
             <children>
-                <TableView fx:id="ClientsTableView" layoutX="32.0" layoutY="51.0" prefHeight="200.0" prefWidth="414.0">
+                <TableView fx:id="ClientsTableView" layoutX="346.0" layoutY="53.0" prefHeight="200.0" prefWidth="414.0">
                     <columns>
                         <TableColumn fx:id="ClientIdColumn" prefWidth="116.80005264282227" text="Client Id" />
                         <TableColumn fx:id="ClientNameColumn" prefWidth="295.99999084472654" text="Client Name" />
                     </columns>
                 </TableView>
-                <TextField fx:id="InsertClientNameField" layoutX="196.0" layoutY="263.0" />
-                <Button fx:id="AddClientButton" layoutX="40.0" layoutY="303.0" mnemonicParsing="false" onAction="#AddClientButtonOnAction" prefHeight="44.0" prefWidth="110.0" style="-fx-background-color: #E96151;" text="Add" textFill="WHITE" />
-                <Button fx:id="DeleteClientButton" layoutX="215.0" layoutY="303.0" mnemonicParsing="false" onAction="#DeleteClientButtonOnAction" prefHeight="44.0" prefWidth="110.0" style="-fx-background-color: #E96151;" text="Delete" textFill="WHITE" />
-                <AnchorPane layoutX="-5.0" layoutY="-1.0" prefHeight="42.0" prefWidth="910.0" style="-fx-background-color: #E96151;" />
-         <Label layoutX="40.0" layoutY="267.0" text="Enter Client Name: " />
+                <TextField fx:id="InsertClientNameField" layoutX="532.0" layoutY="272.0" />
+                <Button fx:id="AddClientButton" layoutX="388.0" layoutY="333.0" mnemonicParsing="false" onAction="#AddClientButtonOnAction" prefHeight="44.0" prefWidth="110.0" style="-fx-background-color: #E96151;" text="Add" textFill="WHITE" />
+                <Button fx:id="DeleteClientButton" layoutX="626.0" layoutY="333.0" mnemonicParsing="false" onAction="#DeleteClientButtonOnAction" prefHeight="44.0" prefWidth="110.0" style="-fx-background-color: #E96151;" text="Delete" textFill="WHITE" />
+                <AnchorPane layoutX="-5.0" layoutY="-1.0" prefHeight="42.0" prefWidth="1238.0" style="-fx-background-color: #E96151;" />
+         <Label layoutX="354.0" layoutY="276.0" text="Enter Client Name: " />
             </children>
         </AnchorPane>
 

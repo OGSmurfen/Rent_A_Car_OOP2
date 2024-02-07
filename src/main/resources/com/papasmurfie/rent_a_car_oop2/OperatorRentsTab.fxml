@@ -15,7 +15,7 @@
         <AnchorPane prefHeight="348.0" prefWidth="606.0">
             <ComboBox fx:id="SelectClassComboBox" layoutX="232.0" layoutY="333.0" prefHeight="26.0" prefWidth="105.0" promptText="Select Class" />
             <ComboBox fx:id="SelectCategoryComboBox" layoutX="345.0" layoutY="332.0" prefHeight="26.0" prefWidth="129.0" promptText="Select Category" />
-            <AnchorPane layoutX="-2.0" prefHeight="51.0" prefWidth="1164.0" style="-fx-background-color: #E96151;" />
+            <AnchorPane layoutX="-2.0" prefHeight="51.0" prefWidth="1194.0" style="-fx-background-color: #E96151;" />
             <TableView fx:id="CarsTableView" layoutX="6.0" layoutY="56.0" prefHeight="259.0" prefWidth="1150.0">
                 <columns>
                     <TableColumn fx:id="CarIdColumn" prefWidth="22.4000244140625" text="Id" />
