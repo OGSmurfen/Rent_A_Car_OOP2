@@ -11,12 +11,12 @@ public class Rents {
     @Id
     @Column(name = "rent_id")
     private int rentId;
-    @Basic
-    @Column(name = "car_id")
-    private int carId;
-    @Basic
-    @Column(name = "client_id")
-    private int clientId;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "car_id")
+    private Cars car;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")
+    private Clients client;
     @Basic
     @Column(name = "description_protocol")
     private String descriptionProtocol;
@@ -29,6 +29,9 @@ public class Rents {
     @Basic
     @Column(name = "date_returned")
     private Date dateReturned;
+    @Basic
+    @Column(name = "kilometers_driven")
+    private int kmDriven;
 
     public int getRentId() {
         return rentId;
@@ -38,20 +41,20 @@ public class Rents {
         this.rentId = rentId;
     }
 
-    public int getCarId() {
-        return carId;
+    public Cars getCar() {
+        return car;
     }
 
-    public void setCarId(int carId) {
-        this.carId = carId;
+    public void setCar(Cars car) {
+        this.car = car;
     }
 
-    public int getClientId() {
-        return clientId;
+    public Clients getClient() {
+        return client;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    public void setClientId(Clients client) {
+        this.client = client;
     }
 
     public String getDescriptionProtocol() {
@@ -85,17 +88,24 @@ public class Rents {
     public void setDateReturned(Date dateReturned) {
         this.dateReturned = dateReturned;
     }
+    public int getKmDriven() {
+        return kmDriven;
+    }
+
+    public void setKmDriven(int kmDriven) {
+        this.kmDriven = kmDriven;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rents rents = (Rents) o;
-        return rentId == rents.rentId && carId == rents.carId && clientId == rents.clientId && Objects.equals(descriptionProtocol, rents.descriptionProtocol) && Objects.equals(returnDescriptionProtocol, rents.returnDescriptionProtocol) && Objects.equals(dateRented, rents.dateRented) && Objects.equals(dateReturned, rents.dateReturned);
+        return rentId == rents.rentId && car == rents.car && client == rents.client && Objects.equals(descriptionProtocol, rents.descriptionProtocol) && Objects.equals(returnDescriptionProtocol, rents.returnDescriptionProtocol) && Objects.equals(dateRented, rents.dateRented) && Objects.equals(dateReturned, rents.dateReturned) && kmDriven == rents.kmDriven;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rentId, carId, clientId, descriptionProtocol, returnDescriptionProtocol, dateRented, dateReturned);
+        return Objects.hash(rentId, car, client, descriptionProtocol, returnDescriptionProtocol, dateRented, dateReturned, kmDriven);
     }
 }
