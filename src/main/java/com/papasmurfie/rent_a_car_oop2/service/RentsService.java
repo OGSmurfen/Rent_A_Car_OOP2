@@ -13,7 +13,7 @@ public class RentsService {
         this.rentsRepository = rentsRepository;
     }
 
-    public Rents addNew(Rents rent) {
+    public Rents addRent(Rents rent) {
         return rentsRepository.addNew(rent);
     }
 

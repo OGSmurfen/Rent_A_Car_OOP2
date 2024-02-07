@@ -1,19 +1,20 @@
 package com.papasmurfie.rent_a_car_oop2.controllers.operator.cars;
 
-import com.papasmurfie.rent_a_car_oop2.entity.CarBrand;
-import com.papasmurfie.rent_a_car_oop2.entity.CarCategory;
-import com.papasmurfie.rent_a_car_oop2.entity.CarClass;
-import com.papasmurfie.rent_a_car_oop2.entity.Cars;
+import com.papasmurfie.rent_a_car_oop2.entity.*;
 import com.papasmurfie.rent_a_car_oop2.service.CarService;
+import com.papasmurfie.rent_a_car_oop2.service.RentsService;
 
 import java.util.List;
 
 public class CarController {
 
-    private CarService carService;
+    private final CarService carService;
 
-    public CarController(CarService carService) {
+    private final RentsService rentsService;
+
+    public CarController(CarService carService, RentsService rentsService) {
         this.carService = carService;
+        this.rentsService = rentsService;
     }
 
     public void addCar(Cars car) {
@@ -56,5 +57,9 @@ public class CarController {
 
     public List<Cars> findAvailableCars(boolean selected) {
         return carService.findAvailableCars(selected);
+    }
+
+    public void addRent(Rents rent) {
+        rentsService.addRent(rent);
     }
 }

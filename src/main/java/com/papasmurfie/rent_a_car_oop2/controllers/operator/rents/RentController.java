@@ -13,8 +13,8 @@ public class RentController {
         this.rentsService = rentsService;
     }
 
-    public Rents addNew(Rents rent) {
-        return rentsService.addNew(rent);
+    public Rents addRent(Rents rent) {
+        return rentsService.addRent(rent);
     }
 
     public Rents findById(Rents rent) {

@@ -2,7 +2,9 @@ package com.papasmurfie.rent_a_car_oop2.controllers.operator.cars;
 
 import com.papasmurfie.rent_a_car_oop2.entity.*;
 import com.papasmurfie.rent_a_car_oop2.repository.impl.CarRepositoryImpl;
+import com.papasmurfie.rent_a_car_oop2.repository.impl.RentsRepositoryImpl;
 import com.papasmurfie.rent_a_car_oop2.service.CarService;
+import com.papasmurfie.rent_a_car_oop2.service.RentsService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,7 +49,7 @@ public class OperatorRentCarTabFormController {
 
 // TODO: Populate the other combo boxes.
 
-    private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()));
+    private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()), new RentsService(new RentsRepositoryImpl()));
     private ObservableList<Cars> carsDataList;
     private ObservableList<CarBrand> carBrandsDataList;
 

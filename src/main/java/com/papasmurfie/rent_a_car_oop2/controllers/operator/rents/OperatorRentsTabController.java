@@ -49,7 +49,7 @@ public class OperatorRentsTabController {
 
 // TODO: Populate the other combo boxes.
 
-    private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()));
+    private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()), new RentsService(new RentsRepositoryImpl()));
     private final RentController rentController = new RentController(new RentsService(new RentsRepositoryImpl()));
     private ObservableList<Cars> carsDataList;
     private ObservableList<Rents> rentsDataList;
@@ -57,7 +57,7 @@ public class OperatorRentsTabController {
 
     public void initialize() {
         populateTable();
-        populateComboBoxes();
+        //populateComboBoxes();
 
         CarsTableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) { // Check for a single click
@@ -125,7 +125,9 @@ public class OperatorRentsTabController {
     }
     private  void populateTable(List<Cars> carsList) {
         //List<Cars> carsList = carController.findAll();
-        if(carsDataList != null){carsDataList.clear();}
+        if(carsDataList != null) {
+            carsDataList.clear();
+        }
         carsDataList = FXCollections.observableArrayList(carsList);
         CarsTableView.setItems(carsDataList);
         setupColumns();
@@ -141,88 +143,16 @@ public class OperatorRentsTabController {
         CarSmokerColumn.setCellValueFactory(new PropertyValueFactory<>("smoker"));
         isRentedColumn.setCellValueFactory(new PropertyValueFactory<>("isrented"));
     }
-    public void AddCarButtonOnAction() {
-//if Insert TextField(s) empty -> Alert
-        if (insertCarModelTextField.getText().isEmpty() || carCharacteristicsTextField.getText().isEmpty()
-                || SelectCategoryComboBox.getValue()==null || SelectClassComboBox.getValue()==null
-                || SelectBrandComboBox.getValue() == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please insert all data to be added!", ButtonType.OK);
-            alert.showAndWait();
-            return;
-        }
-        boolean smoker;
-        if(smokerCheckButton.isSelected()){smoker = true;}else{smoker = false;}
-        Cars car = new Cars(carController.findBrand(SelectBrandComboBox.getValue()) ,
-                insertCarModelTextField.getText(),
-                carController.findCarClass((String) SelectClassComboBox.getValue()),
-                carController.findCarCategory((String) SelectCategoryComboBox.getValue()),
-                carCharacteristicsTextField.getText(),
-                "none",
-                smoker,
-                false);
-        carController.addCar(car);
-        carsDataList.add(car);
 
+    public void onCarClassCheckboxChecked(ActionEvent actionEvent) {
 
-        smokerCheckButton.setSelected(false);
-        SelectBrandComboBox.setValue(null);
-        SelectCategoryComboBox.setValue(null);
-        SelectClassComboBox.setValue(null);
-        carCharacteristicsTextField.setText("");
-        insertCarModelTextField.setText("");
     }
 
-    public void DeleteCarButtonOnAction() {
-        Cars selectedCar = (Cars) CarsTableView.getSelectionModel().getSelectedItem();
-        if (selectedCar == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a row from TableView", ButtonType.OK);
-            alert.showAndWait();
-            return;
-        }
+    public void onCarCategoryCheckboxChecked(ActionEvent actionEvent) {
 
-        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the selected row(s)?", ButtonType.YES, ButtonType.NO);
-        confirmation.showAndWait();
-
-        if (confirmation.getResult() == ButtonType.YES) {
-            carController.deleteCar(selectedCar);
-            carsDataList.remove(selectedCar);
-        }
     }
 
-    public void RentCarButtonOnAction() {
-        Cars selectedCar = (Cars) CarsTableView.getSelectionModel().getSelectedItem();
-        int selectedRow = CarsTableView.getSelectionModel().getSelectedIndex();
-        if(selectedCar == null){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a row from TableView", ButtonType.OK);
-            alert.showAndWait();
-            return;
-        }
-
-        if(RentCarButton.getText().equals("Rent"))
-        {
-            RentCarButton.setText("Return");
-        }else if(RentCarButton.getText().equals("Return")){
-            RentCarButton.setText("Rent");
-        }
-
-        selectedCar.setIsrented(!selectedCar.isIsrented());
-        carController.updateCar(selectedCar);
-
-        populateTable();
-        //select same row
-        CarsTableView.getSelectionModel().select(selectedRow);
-        CarsTableView.getFocusModel().focus(selectedRow);
-    }
-
-    public void onAvailableCarsCheckboxChecked(ActionEvent event) {
-        if(availableCarsCheckBox.isSelected()) {
-            List<Cars> carsList = carController.findAvailableCars(!availableCarsCheckBox.isSelected());
-            populateTable(carsList);
-        }
-        if(!availableCarsCheckBox.isSelected()){
-            List<Cars> carsList = carController.findAll();
-            populateTable(carsList);
-        }
+    public void onCarModelCheckboxChecked(ActionEvent actionEvent) {
 
     }
 }
