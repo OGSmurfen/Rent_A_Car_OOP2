@@ -29,18 +29,30 @@ import java.util.stream.Collectors;
 import static com.papasmurfie.rent_a_car_oop2.controllers.operator.cars.OperatorRentCarDialogFormConfiguration.RETURN;
 
 public class OperatorRentCarTabFormController {
-    public Button DeleteCarButton;
-    public Button RentCarButton;
-    public TextField insertCarModelTextField;
-    public TextField carCharacteristicsTextField;
-    public CheckBox smokerCheckButton;
-    public TableColumn isRentedColumn;
-    public CheckBox availableCarsCheckBox;
-    public DatePicker dateRentedField;
-    public TextField descriptionTakeField;
-    public TextField kmTextField;
-    public TextField descriptionReturnField;
-    public DatePicker dateReturnedField;
+    @FXML
+    private Button DeleteCarButton;
+    @FXML
+    private Button RentCarButton;
+    @FXML
+    private TextField insertCarModelTextField;
+    @FXML
+    private TextField carCharacteristicsTextField;
+    @FXML
+    private CheckBox smokerCheckButton;
+    @FXML
+    private TableColumn isRentedColumn;
+    @FXML
+    private CheckBox availableCarsCheckBox;
+    @FXML
+    private DatePicker dateRentedField;
+    @FXML
+    private TextField descriptionTakeField;
+    @FXML
+    private TextField kmTextField;
+    @FXML
+    private TextField descriptionReturnField;
+    @FXML
+    private DatePicker dateReturnedField;
 
     @FXML
     private ComboBox SelectClassComboBox;
@@ -48,16 +60,25 @@ public class OperatorRentCarTabFormController {
     private ComboBox SelectCategoryComboBox;
     @FXML
     private ComboBox<String> SelectBrandComboBox;
+
     @FXML
-    public TableView<Cars> CarsTableView;
-    public TableColumn<Cars, Integer> CarIdColumn;
-    public TableColumn<Cars, String> CarBrandColumn;
-    public TableColumn<Cars, String> CarModelColumn;
-    public TableColumn<Cars, String> CarClassColumn;
-    public TableColumn<Cars, String> CarCategoryColumn;
-    public TableColumn<Cars, String> CarCharacteristicsColumn;
-    public TableColumn<Cars, Boolean> CarSmokerColumn;
-    public Button AddCarButton;
+    private TableView<Cars> CarsTableView;
+    @FXML
+    private TableColumn<Cars, Integer> CarIdColumn;
+    @FXML
+    private TableColumn<Cars, String> CarBrandColumn;
+    @FXML
+    private TableColumn<Cars, String> CarModelColumn;
+    @FXML
+    private TableColumn<Cars, String> CarClassColumn;
+    @FXML
+    private TableColumn<Cars, String> CarCategoryColumn;
+    @FXML
+    private TableColumn<Cars, String> CarCharacteristicsColumn;
+    @FXML
+    private TableColumn<Cars, Boolean> CarSmokerColumn;
+    @FXML
+    private Button AddCarButton;
 
 // TODO: Populate the other combo boxes.
 

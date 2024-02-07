@@ -15,7 +15,11 @@ public interface RentsRepository {
     Rents updateRent(Rents rent);
     List<Rents> findInDateDiapazon(Date begin, Date end);
 
+
     int findClientByRentId(int rentId);
 
     Rents findRentById(Integer rentId);
+
+    List<Rents> findBy(String type, String value);
+
 }

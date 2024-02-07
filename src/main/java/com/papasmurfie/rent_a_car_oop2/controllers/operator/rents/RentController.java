@@ -32,6 +32,7 @@ public class RentController {
         return rentsService.findInDateDiapazon(begin, end);
     }
 
+
     public int findClientByRentId(int rentId) {
         return rentsService.findClientByRentId(rentId);
     }
@@ -48,5 +49,9 @@ public class RentController {
         rent.setReturnDescriptionProtocol(returnDescription);
         rent.setKilometresDriven(kilometres);
         rentsService.updateRent(rent);
+
+    public List<Rents> findBy(String type, String value) {
+        return rentsService.findBy(type, value);
+
     }
 }

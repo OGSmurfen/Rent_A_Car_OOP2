@@ -6,6 +6,7 @@ import com.papasmurfie.rent_a_car_oop2.repository.impl.CarRepositoryImpl;
 import com.papasmurfie.rent_a_car_oop2.repository.impl.RentsRepositoryImpl;
 import com.papasmurfie.rent_a_car_oop2.service.CarService;
 import com.papasmurfie.rent_a_car_oop2.service.RentsService;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,38 +15,83 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OperatorRentsTabController {
-    public Button DeleteCarButton;
-    public Button RentCarButton;
-    public TextField insertCarModelTextField;
-    public TextField carCharacteristicsTextField;
-    public CheckBox smokerCheckButton;
-    public TableColumn isRentedColumn;
-    public CheckBox availableCarsCheckBox;
-    public TableColumn rentedDateColumn;
-    public TableColumn returnedDateColumn;
-    public TableColumn kmColumn;
-    public TableColumn descrTajkeColumn;
-    public TableColumn descriptionReturnColumn;
+    @FXML
+    private Button resetBtn;
+    @FXML
+    private Button findBtn;
+    @FXML
+    private DatePicker dateBeginPicker;
+    @FXML
+    private DatePicker dateEndPicker;
+    @FXML
+    private Button DeleteCarButton;
+    @FXML
+    private Button RentCarButton;
+    @FXML
+    private TextField insertCarModelTextField;
+    @FXML
+    private TextField carCharacteristicsTextField;
+    @FXML
+    private CheckBox smokerCheckButton;
+
+    @FXML
+    private CheckBox availableCarsCheckBox;
+    @FXML
+    private TableColumn rentedDateColumn;
+    @FXML
+    private TableColumn returnedDateColumn;
+    @FXML
+    private TableColumn kmColumn;
+    @FXML
+    private TableColumn descrTakeColumn;
+    @FXML
+    private TableColumn descriptionReturnColumn;
+    @FXML
+    private TableView rentsTableView;
+    @FXML
+    private TableColumn rentIdColumn;
+    @FXML
+    private TableColumn<Rents, String> clientNameColumn;
+    @FXML
+    private CheckBox carClassCheckbox;
+    @FXML
+    private ComboBox carClassComboBox;
+    @FXML
+    private ComboBox carModelComboBox;
+    @FXML
+    private CheckBox carModelCheckbox;
+    @FXML
+    private CheckBox carCategoryCheckbox;
+    @FXML
+    private ComboBox carCategoryComboBox;
     @FXML
     private ComboBox SelectClassComboBox;
     @FXML
     private ComboBox SelectCategoryComboBox;
     @FXML
     private ComboBox<String> SelectBrandComboBox;
+
     @FXML
-    public TableView<Cars> CarsTableView;
-    public TableColumn<Cars, Integer> CarIdColumn;
-    public TableColumn<Cars, String> CarBrandColumn;
-    public TableColumn<Cars, String> CarModelColumn;
-    public TableColumn<Cars, String> CarClassColumn;
-    public TableColumn<Cars, String> CarCategoryColumn;
-    public TableColumn<Cars, String> CarCharacteristicsColumn;
-    public TableColumn<Cars, Boolean> CarSmokerColumn;
-    public Button AddCarButton;
+    private TableColumn<Rents, String> CarBrandColumn;
+    @FXML
+    private TableColumn<Rents, String> CarModelColumn;
+    @FXML
+    private TableColumn<Rents, String> CarClassColumn;
+    @FXML
+    private TableColumn<Rents, String> CarCategoryColumn;
+    @FXML
+    private TableColumn<Rents, String> CarCharacteristicsColumn;
+    @FXML
+    private TableColumn<Rents, Boolean> CarSmokerColumn;
+    @FXML
+    private TableColumn<Rents, Boolean> isRentedColumn;
+    @FXML
+    private Button AddCarButton;
 
 // TODO: Populate the other combo boxes.
 
@@ -54,35 +100,36 @@ public class OperatorRentsTabController {
     private ObservableList<Cars> carsDataList;
     private ObservableList<Rents> rentsDataList;
     private ObservableList<CarBrand> carBrandsDataList;
-
+    private List<Rents> rentsList;
     public void initialize() {
         populateTable();
+        populateComboBoxes();
         //populateComboBoxes();
 
-        CarsTableView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 1) { // Check for a single click
-
-                Cars selectedCar = CarsTableView.getSelectionModel().getSelectedItem();
-
-                if (selectedCar != null) {
-                    if(selectedCar.isIsrented()){
-                        RentCarButton.setText("Return");
-                    }
-                    if(!selectedCar.isIsrented()){
-                        RentCarButton.setText("Rent");
-                    }
-                }
-
-                if(selectedCar == null){
-                    RentCarButton.setText("Rent/Return");
-                }
-            }
-
-        });
+//        rentsTableView.setOnMouseClicked(event -> {
+//            if (event.getClickCount() == 1) { // Check for a single click
+//
+//                Rents selectedRent = (Rents) rentsTableView.getSelectionModel().getSelectedItem();
+//
+////                if (selectedRent != null) {
+////                    if(selectedRent.isIsrented()){
+////                        RentCarButton.setText("Return");
+////                    }
+////                    if(!selectedRent.isIsrented()){
+////                        RentCarButton.setText("Rent");
+////                    }
+////                }
+////
+////                if(selectedRent == null){
+////                    RentCarButton.setText("Rent/Return");
+////                }
+//            }
+//
+//        });
     }
 
     private void populateComboBoxes() {
-        populateBrandCB();
+        //populateBrandCB();
         populateClassCB();
         populateCategoryCB();
     }
@@ -93,7 +140,7 @@ public class OperatorRentsTabController {
         List<String> categoryNames = carCategories.stream()
                 .map(CarCategory::getName)
                 .collect(Collectors.toList());
-        SelectCategoryComboBox.setItems(FXCollections.observableArrayList(categoryNames));
+        carCategoryComboBox.setItems(FXCollections.observableArrayList(categoryNames));
     }
 
     private void populateClassCB() {
@@ -103,7 +150,7 @@ public class OperatorRentsTabController {
         List<String> classNames = carClasses.stream()
                 .map(CarClass::getName)
                 .collect(Collectors.toList());
-        SelectClassComboBox.setItems(FXCollections.observableArrayList(classNames));
+        carClassComboBox.setItems(FXCollections.observableArrayList(classNames));
     }
 
     private void populateBrandCB() {
@@ -113,46 +160,88 @@ public class OperatorRentsTabController {
         List<String> brandNames = carBrands.stream()
                 .map(CarBrand::getName)
                 .collect(Collectors.toList());
-        SelectBrandComboBox.setItems(FXCollections.observableArrayList(brandNames));
+        carModelComboBox.setItems(FXCollections.observableArrayList(brandNames));
     }
 
     private  void populateTable() {
-        List<Cars> carsList = carController.findAll();
-        if(carsDataList != null){carsDataList.clear();}
-        carsDataList = FXCollections.observableArrayList(carsList);
-        CarsTableView.setItems(carsDataList);
+        rentsList = rentController.findAll();
+        if(rentsDataList != null){rentsDataList.clear();}
+        rentsDataList = FXCollections.observableArrayList(rentsList);
+        rentsTableView.setItems(rentsDataList);
         setupColumns();
     }
-    private  void populateTable(List<Cars> carsList) {
+    private  void populateTable(List<Rents> rentsList) {
         //List<Cars> carsList = carController.findAll();
-        if(carsDataList != null) {
-            carsDataList.clear();
-        }
-        carsDataList = FXCollections.observableArrayList(carsList);
-        CarsTableView.setItems(carsDataList);
+        if(rentsDataList != null){rentsDataList.clear();}
+        rentsDataList = FXCollections.observableArrayList(rentsList);
+        rentsTableView.setItems(rentsDataList);
         setupColumns();
     }
 
     private void setupColumns() {
-        CarIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        CarBrandColumn.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue().getCarBrand().getName()));
-        CarModelColumn.setCellValueFactory(new PropertyValueFactory<>("model"));
-        CarClassColumn.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue().getCarClass().getName()));
-        CarCategoryColumn.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue().getCarCategory().getName()));
-        CarCharacteristicsColumn.setCellValueFactory(new PropertyValueFactory<>("characteristics"));
-        CarSmokerColumn.setCellValueFactory(new PropertyValueFactory<>("smoker"));
-        isRentedColumn.setCellValueFactory(new PropertyValueFactory<>("isrented"));
+        rentIdColumn.setCellValueFactory(new PropertyValueFactory<>("rentId"));
+        clientNameColumn.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue().getClient().getClientName()));
+        CarBrandColumn.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue().getCar().getCarBrand().getName()));
+        CarModelColumn.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue().getCar().getModel()));
+        CarClassColumn.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue().getCar().getCarClass().getName()));
+        CarCategoryColumn.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue().getCar().getCarCategory().getName()));
+        CarCharacteristicsColumn.setCellValueFactory(cd -> new SimpleStringProperty(cd.getValue().getCar().getCharacteristics()));
+        CarSmokerColumn.setCellValueFactory(cd -> new SimpleBooleanProperty(cd.getValue().getCar().isSmoker()));
+        isRentedColumn.setCellValueFactory(cd -> new SimpleBooleanProperty(cd.getValue().getCar().isIsrented()));
+        rentedDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateRented"));
+        returnedDateColumn.setCellValueFactory(new PropertyValueFactory<>("dateReturned"));
+        kmColumn.setCellValueFactory(new PropertyValueFactory<>("kmDriven"));
+        descrTakeColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionProtocol"));
+        descriptionReturnColumn.setCellValueFactory(new PropertyValueFactory<>("returnDescriptionProtocol"));
     }
 
     public void onCarClassCheckboxChecked(ActionEvent actionEvent) {
+        if(carClassComboBox.getValue() == null)
+            return;
+
+        if(carClassCheckbox.isSelected()) {
+            String str = "Class";
+            List<Rents> rentsList1 = rentController.findBy(str, carClassComboBox.getValue().toString());
+            rentsList = rentsList1;
+            populateTable(rentsList1);
+
+        }
+        if(!carClassCheckbox.isSelected()){
+            populateTable();
+        }
 
     }
 
     public void onCarCategoryCheckboxChecked(ActionEvent actionEvent) {
+        if(carCategoryComboBox.getValue() == null)
+            return;
 
+        if(carCategoryCheckbox.isSelected()) {
+            String str = "Category";
+            List<Rents> rentsList1 = rentController.findBy(str, carCategoryComboBox.getValue().toString());
+            rentsList = rentsList1;
+            populateTable(rentsList1);
+
+        }
+        if(!carCategoryCheckbox.isSelected()){
+            populateTable();
+        }
     }
 
     public void onCarModelCheckboxChecked(ActionEvent actionEvent) {
 
+    }
+
+    public void onFindBtnPressed(ActionEvent event) {
+        if(dateBeginPicker.getValue() == null || dateEndPicker.getValue() == null)
+            return;
+
+        List<Rents>rentsList1 = rentController.findInDateDiapazon(Date.valueOf(dateBeginPicker.getValue()), Date.valueOf(dateEndPicker.getValue()));
+        rentsList = rentsList1;
+        populateTable(rentsList1);
+    }
+
+    public void onResetBtnPressed(ActionEvent event) {
+        populateTable();
     }
 }

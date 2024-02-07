@@ -7,6 +7,7 @@ import com.papasmurfie.rent_a_car_oop2.service.ClientService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,12 +18,18 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class OperatorEditClientsTabController implements Initializable {
-    public TableView ClientsTableView;
-    public TableColumn ClientIdColumn;
-    public TableColumn ClientNameColumn;
-    public TextField InsertClientNameField;
-    public Button AddClientButton;
-    public Button DeleteClientButton;
+    @FXML
+    private TableView ClientsTableView;
+    @FXML
+    private TableColumn ClientIdColumn;
+    @FXML
+    private TableColumn ClientNameColumn;
+    @FXML
+    private TextField InsertClientNameField;
+    @FXML
+    private Button AddClientButton;
+    @FXML
+    private Button DeleteClientButton;
 
     private final ClientsController clientsController = new ClientsController(new ClientService(new ClientsRepositoryImpl()));
     private ObservableList<Clients> clientsDataList;
