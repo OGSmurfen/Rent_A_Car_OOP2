@@ -38,7 +38,7 @@ public class RentController {
     }
 
     public int rentCar(Cars rentCar, Clients client, LocalDate rentalDate, String description) {
-        Rents rent = new Rents(rentCar.getId(), client.getClientId(), description, rentalDate);
+        Rents rent = new Rents(rentCar, client, description, rentalDate);
         return rentsService.addRent(rent).getRentId();
     }
 
@@ -49,6 +49,7 @@ public class RentController {
         rent.setReturnDescriptionProtocol(returnDescription);
         rent.setKilometresDriven(kilometres);
         rentsService.updateRent(rent);
+    }
 
     public List<Rents> findBy(String type, String value) {
         return rentsService.findBy(type, value);

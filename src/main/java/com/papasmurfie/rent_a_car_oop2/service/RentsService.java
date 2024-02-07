@@ -40,9 +40,11 @@ public class RentsService {
 
     public Rents findRentById(Integer rentId) {
         return rentsRepository.findById(rentId);
-
+    }
     public List<Rents> findBy(String type, String value) {
         return rentsRepository.findBy(type, value);
 
     }
 }
+
+

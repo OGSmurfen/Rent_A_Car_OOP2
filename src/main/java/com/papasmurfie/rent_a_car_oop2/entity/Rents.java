@@ -34,9 +34,6 @@ public class Rents {
     @Column(name = "kilometers_driven")
     private int kmDriven;
 
-    @Basic
-    @Column(name = "kilometers_driven")
-    private int kilometresDriven;
 
     public int getRentId() {
         return rentId;
@@ -91,20 +88,20 @@ public class Rents {
     }
 
     public int getKilometresDriven() {
-        return kilometresDriven;
+        return kmDriven;
     }
 
     public void setKilometresDriven(int kilometresDriven) {
-        this.kilometresDriven = kilometresDriven;
+        this.kmDriven = kilometresDriven;
     }
 
     public void setDateReturned(LocalDate dateReturned) {
         this.dateReturned = Date.valueOf(dateReturned);
     }
 
-    public Rents(int carId, int clientId, String descriptionProtocol, LocalDate dateRented) {
-        this.carId = carId;
-        this.clientId = clientId;
+    public Rents(Cars car, Clients clientId, String descriptionProtocol, LocalDate dateRented) {
+        this.car = car;
+        this.client = client;
         this.descriptionProtocol = descriptionProtocol;
         this.dateRented = Date.valueOf(dateRented);
     }

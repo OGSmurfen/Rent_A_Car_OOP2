@@ -5,14 +5,9 @@ import com.papasmurfie.rent_a_car_oop2.entity.Rents;
 import com.papasmurfie.rent_a_car_oop2.repository.RentsRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import com.papasmurfie.rent_a_car_oop2.entity.CarBrand;
-import com.papasmurfie.rent_a_car_oop2.entity.Cars;
-import com.papasmurfie.rent_a_car_oop2.entity.Rents;
-import com.papasmurfie.rent_a_car_oop2.repository.RentsRepository;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
-import javax.persistence.NoResultException;
+
 import java.util.Date;
 import java.util.List;
 
