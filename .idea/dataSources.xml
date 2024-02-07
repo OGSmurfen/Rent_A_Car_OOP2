@@ -52,5 +52,12 @@ D:/java_OOP2_KP/Rent_a_car_OOP2/src/main/resources/META-INF/persistence.xml</rem
       <jdbc-url>jdbc:postgresql://localhost:5432/OOP2</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="postgres@localhost" uuid="0d40cbc1-a4fe-4c6d-bb26-96f828ec5517">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

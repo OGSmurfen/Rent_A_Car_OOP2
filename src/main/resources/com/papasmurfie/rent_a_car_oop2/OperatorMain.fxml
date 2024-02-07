@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="447.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.OperatorMainController">
+    <TabPane fx:id="operatorTabPane" prefHeight="515.0" prefWidth="1172.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab fx:id="operatorHomeTab" text="Home">
+            <fx:include source="OperatorHomeTab.fxml" />
+        </Tab>
+        <Tab text="Edit Clients">
+            <fx:include source="OperatorEditClientsTab.fxml" />
+        </Tab>
+        <Tab text="Rent Car">
+            <fx:include source="OperatorRentCarTab.fxml" />
+        </Tab>
+      <Tab fx:id="allRentsTab" text="All Rents">
+          <fx:include source="OperatorRentsTab.fxml" />
+
+      </Tab>
+    </TabPane>
+</AnchorPane>
