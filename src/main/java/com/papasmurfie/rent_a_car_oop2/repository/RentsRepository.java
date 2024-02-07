@@ -13,4 +13,6 @@ public interface RentsRepository {
     void deleteRent(Rents rent);
     Rents updateRent(Rents rent);
     List<Rents> findInDateDiapazon(Date begin, Date end);
+
+    List<Rents> findBy(String type, String value);
 }

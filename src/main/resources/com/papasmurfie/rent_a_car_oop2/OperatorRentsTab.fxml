@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="469.0" prefWidth="1162.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.rents.OperatorRentsTabController">
+<AnchorPane prefHeight="469.0" prefWidth="1162.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.rents.OperatorRentsTabController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="614.0">
         <AnchorPane prefHeight="348.0" prefWidth="606.0">
             <AnchorPane layoutX="-2.0" prefHeight="51.0" prefWidth="1194.0" style="-fx-background-color: #E96151;" />
-            <TableView fx:id="CarsTableView" layoutX="6.0" layoutY="56.0" prefHeight="259.0" prefWidth="1150.0">
+            <TableView fx:id="rentsTableView" layoutX="6.0" layoutY="56.0" prefHeight="259.0" prefWidth="1150.0">
                 <columns>
-                    <TableColumn fx:id="CarIdColumn" prefWidth="22.4000244140625" text="Id" />
-                    <TableColumn fx:id="CarBrandColumn" prefWidth="63.999969482421875" text="Brand" />
-                    <TableColumn fx:id="CarModelColumn" prefWidth="84.0" text="Model" />
+                    <TableColumn fx:id="rentIdColumn" prefWidth="57.599976539611816" text="Rent_Id" />
+               <TableColumn fx:id="clientNameColumn" prefWidth="75.0" text="Client" />
+                    <TableColumn fx:id="CarBrandColumn" prefWidth="52.79998779296875" text="Brand" />
+                    <TableColumn fx:id="CarModelColumn" prefWidth="61.600006103515625" text="Model" />
                     <TableColumn fx:id="CarClassColumn" prefWidth="79.199951171875" text="Class" />
                     <TableColumn fx:id="CarCategoryColumn" prefWidth="88.0" text="Category" />
                     <TableColumn fx:id="CarCharacteristicsColumn" prefWidth="204.79998779296875" text="Characteristics" />
@@ -24,7 +27,7 @@
                     <TableColumn fx:id="rentedDateColumn" prefWidth="89.5999755859375" text="Rented" />
                     <TableColumn fx:id="returnedDateColumn" prefWidth="99.20001220703125" text="Returned" />
                     <TableColumn fx:id="kmColumn" prefWidth="48.0" text="Km" />
-                    <TableColumn fx:id="descrTajkeColumn" prefWidth="112.800048828125" text="Description Take" />
+                    <TableColumn fx:id="descrTakeColumn" prefWidth="112.800048828125" text="Description Take" />
                     <TableColumn fx:id="descriptionReturnColumn" prefWidth="131.2000732421875" text="Description Return" />
                 </columns>
             </TableView>
@@ -37,4 +40,8 @@
    <CheckBox fx:id="carModelCheckbox" layoutX="257.0" layoutY="358.0" mnemonicParsing="false" onAction="#onCarModelCheckboxChecked" />
    <CheckBox fx:id="carCategoryCheckbox" layoutX="425.0" layoutY="358.0" mnemonicParsing="false" onAction="#onCarCategoryCheckboxChecked" />
    <ComboBox fx:id="carCategoryComboBox" layoutX="450.0" layoutY="355.0" prefHeight="25.0" prefWidth="122.0" promptText="Car category" />
+   <DatePicker fx:id="dateBeginPicker" layoutX="728.0" layoutY="355.0" promptText="Begin Date" />
+   <DatePicker fx:id="dateEndPicker" layoutX="939.0" layoutY="354.0" promptText="End Date" />
+   <Button fx:id="findBtn" layoutX="901.0" layoutY="404.0" mnemonicParsing="false" onAction="#onFindBtnPressed" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: #E96151;" text="Find" />
+   <Button fx:id="resetBtn" layoutX="989.0" layoutY="404.0" mnemonicParsing="false" onAction="#onResetBtnPressed" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: #E96151;" text="Reset" />
 </AnchorPane>

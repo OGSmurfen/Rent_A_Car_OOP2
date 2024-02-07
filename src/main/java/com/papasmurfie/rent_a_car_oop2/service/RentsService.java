@@ -36,4 +36,8 @@ public class RentsService {
     public List<Rents> findInDateDiapazon(Date begin, Date end) {
         return rentsRepository.findInDateDiapazon(begin, end);
     }
+
+    public List<Rents> findBy(String type, String value) {
+        return rentsRepository.findBy(type, value);
+    }
 }
