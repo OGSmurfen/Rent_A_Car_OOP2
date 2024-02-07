@@ -37,6 +37,10 @@ public class Cars {
     @Column(name = "isrented")
     private boolean isrented;
 
+    @Basic
+    @Column(name = "rent_id")
+    private Integer rent_id;
+
     public Cars() {
 
     }
@@ -125,6 +129,14 @@ public class Cars {
         this.isrented = isrented;
     }
 
+    public int getRent_id() {
+        return rent_id;
+    }
+
+    public void setRent_id(Integer rent_id) {
+        this.rent_id = rent_id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -137,4 +149,5 @@ public class Cars {
     public int hashCode() {
         return Objects.hash(id, carBrand, model, carClass, carCategory, characteristics, images, smoker, isrented);
     }
+
 }

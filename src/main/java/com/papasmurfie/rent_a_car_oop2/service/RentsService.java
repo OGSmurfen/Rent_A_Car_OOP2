@@ -17,10 +17,6 @@ public class RentsService {
         return rentsRepository.addNew(rent);
     }
 
-    public Rents findById(Rents rent) {
-        return rentsRepository.findById(rent);
-    }
-
     public List<Rents> findAll() {
         return rentsRepository.findAll();
     }
@@ -35,5 +31,13 @@ public class RentsService {
 
     public List<Rents> findInDateDiapazon(Date begin, Date end) {
         return rentsRepository.findInDateDiapazon(begin, end);
+    }
+
+    public int findClientByRentId(int rentId) {
+        return rentsRepository.findClientByRentId(rentId);
+    }
+
+    public Rents findRentById(Integer rentId) {
+        return rentsRepository.findById(rentId);
     }
 }

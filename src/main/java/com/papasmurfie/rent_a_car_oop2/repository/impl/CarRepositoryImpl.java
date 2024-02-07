@@ -98,10 +98,24 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public void deleteCar(Cars car) {
-        entityManager.getTransaction().begin();
-        entityManager.remove(car);
-        entityManager.getTransaction().commit();
+        try {
+            entityManager.getTransaction().begin();
+
+            // Check if the entity is managed, if not, merge it
+            if (!entityManager.contains(car)) {
+                car = entityManager.merge(car);
+            }
+
+            // Delete the entity
+            entityManager.remove(car);
+
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        }
     }
+
 
     @Override
     public Cars updateCar(Cars car) {

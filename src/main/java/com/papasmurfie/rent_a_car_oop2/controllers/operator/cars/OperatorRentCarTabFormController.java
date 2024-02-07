@@ -1,8 +1,13 @@
 package com.papasmurfie.rent_a_car_oop2.controllers.operator.cars;
 
+import com.papasmurfie.rent_a_car_oop2.Main;
+import com.papasmurfie.rent_a_car_oop2.controllers.login.AuthenticationController;
+import com.papasmurfie.rent_a_car_oop2.controllers.login.LoginFormController;
 import com.papasmurfie.rent_a_car_oop2.entity.*;
 import com.papasmurfie.rent_a_car_oop2.repository.impl.CarRepositoryImpl;
 import com.papasmurfie.rent_a_car_oop2.repository.impl.RentsRepositoryImpl;
+import com.papasmurfie.rent_a_car_oop2.repository.impl.UserRepositoryImpl;
+import com.papasmurfie.rent_a_car_oop2.service.AuthenticationService;
 import com.papasmurfie.rent_a_car_oop2.service.CarService;
 import com.papasmurfie.rent_a_car_oop2.service.RentsService;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,11 +15,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.papasmurfie.rent_a_car_oop2.controllers.operator.cars.OperatorRentCarDialogFormConfiguration.RETURN;
 
 public class OperatorRentCarTabFormController {
     public Button DeleteCarButton;
@@ -49,7 +61,7 @@ public class OperatorRentCarTabFormController {
 
 // TODO: Populate the other combo boxes.
 
-    private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()), new RentsService(new RentsRepositoryImpl()));
+    private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()));
     private ObservableList<Cars> carsDataList;
     private ObservableList<CarBrand> carBrandsDataList;
 
@@ -58,25 +70,35 @@ public class OperatorRentCarTabFormController {
         populateComboBoxes();
 
         CarsTableView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 1) { // Check for a single click
-
+                 if (event.getClickCount() == 2) { // Check for a double click
                 Cars selectedCar = CarsTableView.getSelectionModel().getSelectedItem();
-
                 if (selectedCar != null) {
-                    if(selectedCar.isIsrented()){
-                        RentCarButton.setText("Return");
+                    OperatorRentCarDialogFormController operatorRentCarDialogFormController =
+                            new OperatorRentCarDialogFormController(selectedCar,
+                                    this,
+                                    dialogConfiguration(selectedCar));
+                    FXMLLoader loader = new FXMLLoader(Main.class.getResource("RentCar.fxml"));
+                    loader.setController(operatorRentCarDialogFormController);
+                    try {
+                        Parent root = loader.load();
+                        Scene scene = new Scene(root);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                    if(!selectedCar.isIsrented()){
-                        RentCarButton.setText("Rent");
-                    }
-                }
-
-                if(selectedCar == null){
-                    RentCarButton.setText("Rent/Return");
                 }
             }
-
         });
+    }
+
+    private OperatorRentCarDialogFormConfiguration dialogConfiguration(Cars selectedCar) {
+        if (selectedCar.isIsrented()) {
+            return OperatorRentCarDialogFormConfiguration.RETURN;
+        } else {
+            return OperatorRentCarDialogFormConfiguration.RENT;
+        }
     }
 
     private void populateComboBoxes() {
@@ -114,7 +136,7 @@ public class OperatorRentCarTabFormController {
         SelectBrandComboBox.setItems(FXCollections.observableArrayList(brandNames));
     }
 
-    private  void populateTable() {
+    public  void populateTable() {
         List<Cars> carsList = carController.findAll();
         if(carsDataList != null){carsDataList.clear();}
         carsDataList = FXCollections.observableArrayList(carsList);
@@ -182,43 +204,14 @@ public class OperatorRentCarTabFormController {
         confirmation.showAndWait();
 
         if (confirmation.getResult() == ButtonType.YES) {
-            carController.deleteCar(selectedCar);
-            carsDataList.remove(selectedCar);
+            try {
+                carController.deleteCar(selectedCar);
+                carsDataList.remove(selectedCar);
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Cannot delete a car that has been rented.", ButtonType.OK);
+                alert.showAndWait();
+            }
         }
-    }
-
-    public void RentCarButtonOnAction() {
-        Cars selectedCar = (Cars) CarsTableView.getSelectionModel().getSelectedItem();
-        int selectedRow = CarsTableView.getSelectionModel().getSelectedIndex();
-
-        if(selectedCar == null){//no car selected
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a row from TableView", ButtonType.OK);
-            alert.showAndWait();
-            return;
-        }
-        if((dateReturnedField.getValue()==null || descriptionReturnField.getText()==null)&&selectedCar.isIsrented()){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in date and description of return", ButtonType.OK);
-            alert.showAndWait();
-            return;
-        }
-        if((dateRentedField.getValue()==null || descriptionTakeField.getText()==null)&&!selectedCar.isIsrented()){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please fill in date and description of take", ButtonType.OK);
-            alert.showAndWait();
-            return;
-        }
-        if(RentCarButton.getText().equals("Rent")) {
-            RentCarButton.setText("Return");
-        }else if(RentCarButton.getText().equals("Return")){
-            RentCarButton.setText("Rent");
-        }
-
-        selectedCar.setIsrented(!selectedCar.isIsrented());
-        carController.updateCar(selectedCar);
-
-        populateTable();
-        //select same row
-        CarsTableView.getSelectionModel().select(selectedRow);
-        CarsTableView.getFocusModel().focus(selectedRow);
     }
 
     public void onAvailableCarsCheckboxChecked(ActionEvent event) {
@@ -227,8 +220,7 @@ public class OperatorRentCarTabFormController {
             populateTable(carsList);
         }
         if(!availableCarsCheckBox.isSelected()){
-            List<Cars> carsList = carController.findAll();
-            populateTable(carsList);
+            populateTable();
         }
 
     }

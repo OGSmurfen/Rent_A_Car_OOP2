@@ -50,4 +50,9 @@ public class Clients {
     public int hashCode() {
         return Objects.hash(clientId, clientName);
     }
+
+    @Override
+    public String toString() {
+        return this.getClientName();
+    }
 }

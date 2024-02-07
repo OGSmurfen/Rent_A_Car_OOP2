@@ -10,11 +10,8 @@ public class CarController {
 
     private final CarService carService;
 
-    private final RentsService rentsService;
-
-    public CarController(CarService carService, RentsService rentsService) {
+    public CarController(CarService carService) {
         this.carService = carService;
-        this.rentsService = rentsService;
     }
 
     public void addCar(Cars car) {
@@ -59,7 +56,4 @@ public class CarController {
         return carService.findAvailableCars(selected);
     }
 
-    public void addRent(Rents rent) {
-        rentsService.addRent(rent);
-    }
 }

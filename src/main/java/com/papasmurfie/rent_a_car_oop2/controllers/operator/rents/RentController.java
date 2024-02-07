@@ -1,8 +1,11 @@
 package com.papasmurfie.rent_a_car_oop2.controllers.operator.rents;
 
+import com.papasmurfie.rent_a_car_oop2.entity.Cars;
+import com.papasmurfie.rent_a_car_oop2.entity.Clients;
 import com.papasmurfie.rent_a_car_oop2.entity.Rents;
 import com.papasmurfie.rent_a_car_oop2.service.RentsService;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -11,14 +14,6 @@ public class RentController {
 
     public RentController(RentsService rentsService) {
         this.rentsService = rentsService;
-    }
-
-    public Rents addRent(Rents rent) {
-        return rentsService.addRent(rent);
-    }
-
-    public Rents findById(Rents rent) {
-        return rentsService.findById(rent);
     }
 
     public List<Rents> findAll() {
@@ -35,5 +30,23 @@ public class RentController {
 
     public List<Rents> findInDateDiapazon(Date begin, Date end) {
         return rentsService.findInDateDiapazon(begin, end);
+    }
+
+    public int findClientByRentId(int rentId) {
+        return rentsService.findClientByRentId(rentId);
+    }
+
+    public int rentCar(Cars rentCar, Clients client, LocalDate rentalDate, String description) {
+        Rents rent = new Rents(rentCar.getId(), client.getClientId(), description, rentalDate);
+        return rentsService.addRent(rent).getRentId();
+    }
+
+    public void returnCar(Cars rentCar, LocalDate returnDate, String returnDescription, int kilometres) {
+        // rentCar, client, rentalDate, description, Integer.parseInt(kilometresTextField.getText()
+        Rents rent = rentsService.findRentById(rentCar.getRent_id());
+        rent.setDateReturned(returnDate);
+        rent.setReturnDescriptionProtocol(returnDescription);
+        rent.setKilometresDriven(kilometres);
+        rentsService.updateRent(rent);
     }
 }

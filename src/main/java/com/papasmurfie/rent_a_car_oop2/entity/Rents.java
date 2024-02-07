@@ -3,6 +3,7 @@ package com.papasmurfie.rent_a_car_oop2.entity;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -29,6 +30,10 @@ public class Rents {
     @Basic
     @Column(name = "date_returned")
     private Date dateReturned;
+
+    @Basic
+    @Column(name = "kilometers_driven")
+    private int kilometresDriven;
 
     public int getRentId() {
         return rentId;
@@ -78,12 +83,30 @@ public class Rents {
         this.dateRented = dateRented;
     }
 
-    public Date getDateReturned() {
-        return dateReturned;
+    public LocalDate getDateReturned() {
+        return dateReturned.toLocalDate();
     }
 
-    public void setDateReturned(Date dateReturned) {
-        this.dateReturned = dateReturned;
+    public int getKilometresDriven() {
+        return kilometresDriven;
+    }
+
+    public void setKilometresDriven(int kilometresDriven) {
+        this.kilometresDriven = kilometresDriven;
+    }
+
+    public void setDateReturned(LocalDate dateReturned) {
+        this.dateReturned = Date.valueOf(dateReturned);
+    }
+
+    public Rents(int carId, int clientId, String descriptionProtocol, LocalDate dateRented) {
+        this.carId = carId;
+        this.clientId = clientId;
+        this.descriptionProtocol = descriptionProtocol;
+        this.dateRented = Date.valueOf(dateRented);
+    }
+
+    public Rents() {
     }
 
     @Override
