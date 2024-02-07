@@ -95,7 +95,7 @@ public class OperatorRentsTabController {
 
 // TODO: Populate the other combo boxes.
 
-    private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()), new RentsService(new RentsRepositoryImpl()));
+    private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()));
     private final RentController rentController = new RentController(new RentsService(new RentsRepositoryImpl()));
     private ObservableList<Cars> carsDataList;
     private ObservableList<Rents> rentsDataList;

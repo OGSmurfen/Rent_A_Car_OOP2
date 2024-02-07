@@ -27,7 +27,6 @@ public class CarService {
     public void deleteCar(Cars car) {
         carRepository.deleteCar(car);
     }
-
     public List<CarBrand> findAllBrands() {
         return carRepository.findAllBrands();
     }
