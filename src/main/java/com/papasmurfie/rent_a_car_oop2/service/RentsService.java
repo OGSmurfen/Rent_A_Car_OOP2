@@ -1,5 +1,6 @@
 package com.papasmurfie.rent_a_car_oop2.service;
 
+import com.papasmurfie.rent_a_car_oop2.entity.Clients;
 import com.papasmurfie.rent_a_car_oop2.entity.Rents;
 import com.papasmurfie.rent_a_car_oop2.repository.RentsRepository;
 
@@ -34,7 +35,7 @@ public class RentsService {
     }
 
 
-    public int findClientByRentId(int rentId) {
+    public Clients findClientByRentId(int rentId) {
         return rentsRepository.findClientByRentId(rentId);
     }
 

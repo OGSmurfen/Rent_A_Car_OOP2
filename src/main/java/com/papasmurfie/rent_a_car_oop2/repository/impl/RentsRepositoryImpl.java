@@ -1,6 +1,7 @@
 package com.papasmurfie.rent_a_car_oop2.repository.impl;
 
 import com.papasmurfie.rent_a_car_oop2.Transactions.HibernateTransactionManager;
+import com.papasmurfie.rent_a_car_oop2.entity.Clients;
 import com.papasmurfie.rent_a_car_oop2.entity.Rents;
 import com.papasmurfie.rent_a_car_oop2.repository.RentsRepository;
 import jakarta.persistence.EntityManager;
@@ -130,13 +131,13 @@ public class RentsRepositoryImpl implements RentsRepository {
     }
 
     @Override
-    public int findClientByRentId(int rentId) {
+    public Clients findClientByRentId(int rentId) {
         try {
-            return entityManager.createQuery("SELECT r.clientId FROM Rents r WHERE r.rentId = :rentId", Integer.class)
+            return entityManager.createQuery("SELECT r.client FROM Rents r WHERE r.rentId = :rentId", Clients.class)
                     .setParameter("rentId", rentId)
                     .getSingleResult();
         } catch (NoResultException e) {
-            return -1;
+            return null;
         }
     }
 

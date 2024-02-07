@@ -33,7 +33,7 @@ public class RentController {
     }
 
 
-    public int findClientByRentId(int rentId) {
+    public Clients findClientByRentId(int rentId) {
         return rentsService.findClientByRentId(rentId);
     }
 

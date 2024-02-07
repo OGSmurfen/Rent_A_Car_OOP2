@@ -2,6 +2,7 @@ package com.papasmurfie.rent_a_car_oop2.controllers.operator.cars;
 
 import com.papasmurfie.rent_a_car_oop2.controllers.operator.clients.ClientsController;
 import com.papasmurfie.rent_a_car_oop2.controllers.operator.rents.RentController;
+import com.papasmurfie.rent_a_car_oop2.entity.CarCategory;
 import com.papasmurfie.rent_a_car_oop2.entity.Cars;
 import com.papasmurfie.rent_a_car_oop2.entity.Clients;
 import com.papasmurfie.rent_a_car_oop2.repository.impl.CarRepositoryImpl;
@@ -10,6 +11,8 @@ import com.papasmurfie.rent_a_car_oop2.repository.impl.RentsRepositoryImpl;
 import com.papasmurfie.rent_a_car_oop2.service.CarService;
 import com.papasmurfie.rent_a_car_oop2.service.ClientService;
 import com.papasmurfie.rent_a_car_oop2.service.RentsService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +24,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class OperatorRentCarDialogFormController implements Initializable {
@@ -72,8 +76,9 @@ public class OperatorRentCarDialogFormController implements Initializable {
                 rentButton.setText("Return");
                 clientComboBox.setDisable(true);
                 // find client by rent id
-                int clientId = rentController.findClientByRentId(rentCar.getRent_id());
-                clientComboBox.setItems(clientComboBox.getItems().filtered(client -> client.getClientId() == clientId));
+                Clients client = rentController.findClientByRentId(rentCar.getRent_id());
+                ObservableList<Clients> clientsDataList = FXCollections.observableArrayList(client);
+                clientComboBox.setItems(clientsDataList);
                 clientComboBox.getSelectionModel().selectFirst();
                 kilometresTextField.setVisible(true);
                 break;
@@ -81,33 +86,6 @@ public class OperatorRentCarDialogFormController implements Initializable {
 
         setupCarInfo();
     }
-
-    private void returnButtonClicked(LocalDate rentalDate, String description, int kilometres) {
-        rentController.returnCar(rentCar, rentalDate, description, kilometres);
-        rentCar.setIsrented(false);
-        rentCar.setRent_id(null);
-        carController.updateCar(rentCar);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
-        alert.setHeaderText("Success");
-        alert.setContentText("Car returned successfully");
-        alert.showAndWait();
-        Stage stage = (Stage) rentButton.getScene().getWindow();
-        stage.close();
-        operatorRentCarTabFormController.populateTable();
-    }
-
-    private void rentButtonAction(Clients client, LocalDate rentalDate, String description) {
-            int rentId = rentController.rentCar(rentCar, client, rentalDate, description);
-            rentCar.setIsrented(true);
-            rentCar.setRent_id(rentId);
-            carController.updateCar(rentCar);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText("Success");
-            alert.setContentText("Car rented successfully");
-            alert.showAndWait();
-        }
     @FXML
     private void rentButtonClicked(ActionEvent actionEvent) {
         Clients client = clientComboBox.getValue();
@@ -136,6 +114,34 @@ public class OperatorRentCarDialogFormController implements Initializable {
             stage.close();
             operatorRentCarTabFormController.populateTable();
         }
+    }
+
+
+    private void rentButtonAction(Clients client, LocalDate rentalDate, String description) {
+        int rentId = rentController.rentCar(rentCar, client, rentalDate, description);
+        rentCar.setIsrented(true);
+        rentCar.setRent_id(rentId);
+        carController.updateCar(rentCar);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Success");
+        alert.setContentText("Car rented successfully");
+        alert.showAndWait();
+    }
+
+    private void returnButtonClicked(LocalDate rentalDate, String description, int kilometres) {
+        rentController.returnCar(rentCar, rentalDate, description, kilometres);
+        rentCar.setIsrented(false);
+        rentCar.setRent_id(null);
+        carController.updateCar(rentCar);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Success");
+        alert.setContentText("Car returned successfully");
+        alert.showAndWait();
+        Stage stage = (Stage) rentButton.getScene().getWindow();
+        stage.close();
+        operatorRentCarTabFormController.populateTable();
     }
 
     private void populateComboBox() {

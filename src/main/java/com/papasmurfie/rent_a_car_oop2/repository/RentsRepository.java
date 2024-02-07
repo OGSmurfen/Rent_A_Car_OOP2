@@ -1,5 +1,6 @@
 package com.papasmurfie.rent_a_car_oop2.repository;
 
+import com.papasmurfie.rent_a_car_oop2.entity.Clients;
 import com.papasmurfie.rent_a_car_oop2.entity.Rents;
 
 import java.util.Date;
@@ -16,7 +17,7 @@ public interface RentsRepository {
     List<Rents> findInDateDiapazon(Date begin, Date end);
 
 
-    int findClientByRentId(int rentId);
+    Clients findClientByRentId(int rentId);
 
     Rents findRentById(Integer rentId);
 

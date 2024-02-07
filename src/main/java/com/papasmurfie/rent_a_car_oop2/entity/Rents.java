@@ -99,7 +99,7 @@ public class Rents {
         this.dateReturned = Date.valueOf(dateReturned);
     }
 
-    public Rents(Cars car, Clients clientId, String descriptionProtocol, LocalDate dateRented) {
+    public Rents(Cars car, Clients client, String descriptionProtocol, LocalDate dateRented) {
         this.car = car;
         this.client = client;
         this.descriptionProtocol = descriptionProtocol;
