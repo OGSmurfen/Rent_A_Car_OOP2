@@ -35,6 +35,9 @@ public class OperatorRentCarDialogFormController implements Initializable {
     private ImageView carImageView;
     @FXML
     private DatePicker rentalDatePicker;
+
+    @FXML
+    private DatePicker returnDatePicker;
     @FXML
     private TextArea rentalDescription;
     @FXML
@@ -55,6 +58,8 @@ public class OperatorRentCarDialogFormController implements Initializable {
     private Button calculateButton;
 
     private final Cars rentCar;
+
+    private double totalPrice = 0.0;
 
     private final ClientsController clientsController = new ClientsController(new ClientService(new ClientsRepositoryImpl()));
 
@@ -90,6 +95,8 @@ public class OperatorRentCarDialogFormController implements Initializable {
                 calculateButton.setVisible(true);
                 dentsCheckBox.setVisible(true);
                 scratchesCheckBox.setVisible(true);
+                rentalDatePicker.setVisible(false);
+                returnDatePicker.setVisible(false);
                 Clients client = rentController.findClientByRentId(rentCar.getRent_id());
                 ObservableList<Clients> clientsDataList = FXCollections.observableArrayList(client);
                 clientComboBox.setItems(clientsDataList);
@@ -104,6 +111,7 @@ public class OperatorRentCarDialogFormController implements Initializable {
     private void rentButtonClicked() {
         Clients client = clientComboBox.getValue();
         LocalDate rentalDate = rentalDatePicker.getValue();
+        LocalDate returnDate = returnDatePicker.getValue();
         String description = rentalDescription.getText();
         int kilometres = 0;
         if (!kilometresTextField.getText().isEmpty()) {
@@ -118,10 +126,10 @@ public class OperatorRentCarDialogFormController implements Initializable {
         } else {
            switch (operatorRentCarDialogFormConfiguration) {
                 case RENT:
-                    rentButtonAction(client, rentalDate, description);
+                    rentButtonAction(client, rentalDate, returnDate, description);
                     break;
                 case RETURN:
-                    returnButtonClicked(rentalDate, description, kilometres);
+                    returnButtonClicked(description, kilometres);
                     break;
             }
             Stage stage = (Stage) rentButton.getScene().getWindow();
@@ -131,8 +139,8 @@ public class OperatorRentCarDialogFormController implements Initializable {
     }
 
 
-    private void rentButtonAction(Clients client, LocalDate rentalDate, String description) {
-        int rentId = rentController.rentCar(rentCar, client, rentalDate, description);
+    private void rentButtonAction(Clients client, LocalDate rentalDate, LocalDate returnDate, String description) {
+        int rentId = rentController.rentCar(rentCar, client, rentalDate, returnDate, description);
         rentCar.setIsrented(true);
         rentCar.setRent_id(rentId);
         carController.updateCar(rentCar);
@@ -143,8 +151,8 @@ public class OperatorRentCarDialogFormController implements Initializable {
         alert.showAndWait();
     }
 
-    private void returnButtonClicked(LocalDate rentalDate, String description, int kilometres) {
-        rentController.returnCar(rentCar, rentalDate, description, kilometres);
+    private void returnButtonClicked(String description, int kilometres) {
+        rentController.returnCar(rentCar, description, kilometres, totalPrice);
         rentCar.setIsrented(false);
         rentCar.setRent_id(null);
         carController.updateCar(rentCar);
@@ -160,8 +168,11 @@ public class OperatorRentCarDialogFormController implements Initializable {
 
     @FXML
     private void calculateButtonAction() {
-        LocalDate returnDate = rentalDatePicker.getValue();
-        double totalPrice = carDamageController.calculateDamagePrice(rentCar, returnDate, scratchesCheckBox.isSelected(), dentsCheckBox.isSelected());
+        int kilometres = 0;
+        if (!kilometresTextField.getText().isEmpty()) {
+            kilometres = Integer.parseInt(kilometresTextField.getText());
+        }
+        totalPrice = carDamageController.calculateDamagePrice(rentCar, scratchesCheckBox.isSelected(), dentsCheckBox.isSelected(), kilometres);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Total price");
         alert.setHeaderText("Total price");

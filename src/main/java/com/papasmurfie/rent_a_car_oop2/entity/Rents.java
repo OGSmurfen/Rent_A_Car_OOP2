@@ -2,6 +2,8 @@ package com.papasmurfie.rent_a_car_oop2.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -34,6 +36,17 @@ public class Rents {
     @Column(name = "kilometers_driven")
     private int kmDriven;
 
+    @Basic
+    @Column(name = "totalprice")
+    private BigDecimal totalPrice;
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     public int getRentId() {
         return rentId;
@@ -102,11 +115,12 @@ public class Rents {
         this.dateReturned = Date.valueOf(dateReturned);
     }
 
-    public Rents(Cars car, Clients client, String descriptionProtocol, LocalDate dateRented) {
+    public Rents(Cars car, Clients client, String descriptionProtocol, LocalDate dateRented, LocalDate returnDate) {
         this.car = car;
         this.client = client;
         this.descriptionProtocol = descriptionProtocol;
         this.dateRented = Date.valueOf(dateRented);
+        this.dateReturned = Date.valueOf(returnDate);
     }
 
     public Rents() {

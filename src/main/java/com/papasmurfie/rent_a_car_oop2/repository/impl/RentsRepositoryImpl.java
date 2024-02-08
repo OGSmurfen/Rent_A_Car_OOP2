@@ -61,6 +61,7 @@ public class RentsRepositoryImpl implements RentsRepository {
             existingRents.setDateReturned(rent.getDateReturned());
             existingRents.setReturnDescriptionProtocol(rent.getReturnDescriptionProtocol());
             existingRents.setKilometresDriven(rent.getKilometresDriven());
+            existingRents.setTotalPrice(rent.getTotalPrice());
             entityManager.merge(existingRents);
             entityManager.getTransaction().commit();
         }

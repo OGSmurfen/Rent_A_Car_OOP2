@@ -8,6 +8,7 @@ import com.papasmurfie.rent_a_car_oop2.repository.impl.RentsRepositoryImpl;
 import com.papasmurfie.rent_a_car_oop2.service.CarDamageService;
 import com.papasmurfie.rent_a_car_oop2.service.RentsService;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,10 +20,11 @@ public class CarDamageController {
         this.carDamageService = carDamageService;
     }
 
-    public double calculateDamagePrice(Cars rentedCar, LocalDate returnDate, boolean isScratched, boolean isDented) {
+    public double calculateDamagePrice(Cars rentedCar, boolean isScratched, boolean isDented, int kmDriven) {
         int rentId = rentedCar.getRent_id();
         Rents rent = rentsService.findRentById(rentId);
         LocalDate rentedDate = rent.getDateRented().toLocalDate();
+        LocalDate returnDate = rent.getDateReturned();
         int daysRented = returnDate.compareTo(rentedDate);
         double totalPrince = 0.0;
         List<Cardamageprices> pricesList = findCarDamageByCarClass(rentedCar.getCarClass());
@@ -35,6 +37,9 @@ public class CarDamageController {
             }
         }
         totalPrince += rentedCar.getDailyPrice().doubleValue() * daysRented;
+        totalPrince += kmDriven * 0.5;
+        rent.setTotalPrice(BigDecimal.valueOf(totalPrince));
+        // We should consider storing the price in rent.
         return totalPrince;
     }
 
