@@ -2,6 +2,8 @@ package com.papasmurfie.rent_a_car_oop2.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Objects;
 
 @Entity
@@ -41,6 +43,10 @@ public class Cars {
     @Column(name = "rent_id")
     private Integer rent_id;
 
+    @Basic
+    @Column(name = "dailyPrice")
+    private BigInteger dailyPrice;
+
     public Cars() {
 
     }
@@ -55,6 +61,14 @@ public class Cars {
         this.images = images;
         this.smoker = smoker;
         this.isrented = isrented;
+    }
+
+    public BigInteger getDailyPrice() {
+        return dailyPrice;
+    }
+
+    public void setDailyPrice(BigInteger dailyPrice) {
+        this.dailyPrice = dailyPrice;
     }
 
     public int getId() {
@@ -149,5 +163,4 @@ public class Cars {
     public int hashCode() {
         return Objects.hash(id, carBrand, model, carClass, carCategory, characteristics, images, smoker, isrented);
     }
-
 }

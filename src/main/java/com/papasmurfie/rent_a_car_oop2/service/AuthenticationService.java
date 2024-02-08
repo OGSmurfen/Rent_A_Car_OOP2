@@ -7,7 +7,7 @@ public class AuthenticationService {
 
     private UserRepository userRepository;
 
-    // Constructor or setter for injecting the UserRepository
+    // Constructor for injecting the UserRepository
     public AuthenticationService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

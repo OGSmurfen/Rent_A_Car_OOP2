@@ -65,18 +65,13 @@ public class MainController {
 
     private void showAdminView() {
         try {
-            //тук промених да не се извиква новия прозорец намястото на стария. С цел да можем при LOGOUTG бутон в админ
-            //да се врщаме в LOGIn, а не да ни изхвърля. Може да се измисли начин за скриване на LOGIn формата.. ако искаш...
+
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("AdminMain.fxml"));
             Stage adminStage = new Stage();
             Scene scene = new Scene(loader.load(), 520, 447 );
             adminStage.initStyle(StageStyle.UNDECORATED);
             adminStage.setScene(scene);
             adminStage.show();
-//TODO: да се измисли начин  да се скрива LOGIN формата след извикване на АДМИН форм. След което обратно показване... или не ?
- //           Parent root = loader.load();
-//            primaryStage.setScene(new Scene(root));
-//            primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace(); // Should use logger
         }

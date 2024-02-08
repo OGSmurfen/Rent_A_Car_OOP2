@@ -5,9 +5,11 @@ import com.papasmurfie.rent_a_car_oop2.controllers.operator.rents.RentController
 import com.papasmurfie.rent_a_car_oop2.entity.CarCategory;
 import com.papasmurfie.rent_a_car_oop2.entity.Cars;
 import com.papasmurfie.rent_a_car_oop2.entity.Clients;
+import com.papasmurfie.rent_a_car_oop2.repository.impl.CarDamageRepositoryImpl;
 import com.papasmurfie.rent_a_car_oop2.repository.impl.CarRepositoryImpl;
 import com.papasmurfie.rent_a_car_oop2.repository.impl.ClientsRepositoryImpl;
 import com.papasmurfie.rent_a_car_oop2.repository.impl.RentsRepositoryImpl;
+import com.papasmurfie.rent_a_car_oop2.service.CarDamageService;
 import com.papasmurfie.rent_a_car_oop2.service.CarService;
 import com.papasmurfie.rent_a_car_oop2.service.ClientService;
 import com.papasmurfie.rent_a_car_oop2.service.RentsService;
@@ -43,6 +45,15 @@ public class OperatorRentCarDialogFormController implements Initializable {
     @FXML
     private TextField kilometresTextField;
 
+    @FXML
+    private CheckBox scratchesCheckBox;
+
+    @FXML
+    private CheckBox dentsCheckBox;
+
+    @FXML
+    private Button calculateButton;
+
     private final Cars rentCar;
 
     private final ClientsController clientsController = new ClientsController(new ClientService(new ClientsRepositoryImpl()));
@@ -50,6 +61,8 @@ public class OperatorRentCarDialogFormController implements Initializable {
     private final RentController rentController = new RentController(new RentsService(new RentsRepositoryImpl()));
 
     private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()));
+
+    private final CarDamageController carDamageController = new CarDamageController(new CarDamageService(new CarDamageRepositoryImpl()));;
 
     private OperatorRentCarTabFormController operatorRentCarTabFormController;
 
@@ -74,7 +87,7 @@ public class OperatorRentCarDialogFormController implements Initializable {
             case RETURN:
                 rentButton.setText("Return");
                 clientComboBox.setDisable(true);
-                // find client by rent id
+                calculateButton.setVisible(true);
                 Clients client = rentController.findClientByRentId(rentCar.getRent_id());
                 ObservableList<Clients> clientsDataList = FXCollections.observableArrayList(client);
                 clientComboBox.setItems(clientsDataList);
@@ -86,7 +99,7 @@ public class OperatorRentCarDialogFormController implements Initializable {
         setupCarInfo();
     }
     @FXML
-    private void rentButtonClicked(ActionEvent actionEvent) {
+    private void rentButtonClicked() {
         Clients client = clientComboBox.getValue();
         LocalDate rentalDate = rentalDatePicker.getValue();
         String description = rentalDescription.getText();
@@ -141,6 +154,17 @@ public class OperatorRentCarDialogFormController implements Initializable {
         Stage stage = (Stage) rentButton.getScene().getWindow();
         stage.close();
         operatorRentCarTabFormController.populateTable();
+    }
+
+    @FXML
+    private void calculateButtonAction() {
+        LocalDate returnDate = rentalDatePicker.getValue();
+        double totalPrice = carDamageController.calculateDamagePrice(rentCar, returnDate, scratchesCheckBox.isSelected(), dentsCheckBox.isSelected());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Total price");
+        alert.setHeaderText("Total price");
+        alert.setContentText("Total price is " + totalPrice + "€");
+        alert.showAndWait();
     }
 
     private void populateComboBox() {
