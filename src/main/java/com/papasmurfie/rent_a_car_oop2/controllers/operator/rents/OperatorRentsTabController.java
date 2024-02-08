@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -66,6 +67,8 @@ public class OperatorRentsTabController {
     private TableColumn<Rents, Boolean> CarSmokerColumn;
     @FXML
     private TableColumn<Rents, Boolean> isRentedColumn;
+    @FXML
+    private TableColumn<Rents, BigDecimal> totalPriceColumn;
 
     private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()));
     private final RentController rentController = new RentController(new RentsService(new RentsRepositoryImpl()));
@@ -143,6 +146,8 @@ public class OperatorRentsTabController {
         kmColumn.setCellValueFactory(new PropertyValueFactory<>("kmDriven"));
         descrTakeColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionProtocol"));
         descriptionReturnColumn.setCellValueFactory(new PropertyValueFactory<>("returnDescriptionProtocol"));
+        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+
     }
 
     public void onCarClassCheckboxChecked(ActionEvent actionEvent) {
@@ -176,10 +181,6 @@ public class OperatorRentsTabController {
         if(!carCategoryCheckbox.isSelected()){
             populateTable();
         }
-    }
-
-    public void onCarModelCheckboxChecked(ActionEvent actionEvent) {
-
     }
 
     public void onFindBtnPressed(ActionEvent event) {

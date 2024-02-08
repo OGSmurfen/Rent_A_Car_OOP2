@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="469.0" prefWidth="1162.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.rents.OperatorRentsTabController">
+<AnchorPane prefHeight="469.0" prefWidth="1162.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.papasmurfie.rent_a_car_oop2.controllers.operator.rents.OperatorRentsTabController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="614.0">
         <AnchorPane prefHeight="348.0" prefWidth="606.0">
             <AnchorPane layoutX="-2.0" prefHeight="51.0" prefWidth="1194.0" style="-fx-background-color: #E96151;" />
@@ -29,6 +29,7 @@
                     <TableColumn fx:id="kmColumn" prefWidth="48.0" text="Km" />
                     <TableColumn fx:id="descrTakeColumn" prefWidth="112.800048828125" text="Description Take" />
                     <TableColumn fx:id="descriptionReturnColumn" prefWidth="131.2000732421875" text="Description Return" />
+                    <TableColumn fx:id="totalPriceColumn" prefWidth="100.0" text="Total Price" />
                 </columns>
             </TableView>
         </AnchorPane>
@@ -36,10 +37,9 @@
     <CheckBox fx:id="carClassCheckbox" layoutX="90.0" layoutY="358.0" mnemonicParsing="false" onAction="#onCarClassCheckboxChecked" />
     <Label layoutX="44.0" layoutY="358.0" text="Filter:" />
    <ComboBox fx:id="carClassComboBox" layoutX="116.0" layoutY="355.0" prefHeight="25.0" prefWidth="122.0" promptText="Car class" />
-   <ComboBox fx:id="carModelComboBox" layoutX="283.0" layoutY="355.0" prefHeight="25.0" prefWidth="122.0" promptText="Car model" />
-   <CheckBox fx:id="carModelCheckbox" layoutX="257.0" layoutY="358.0" mnemonicParsing="false" onAction="#onCarModelCheckboxChecked" />
-   <CheckBox fx:id="carCategoryCheckbox" layoutX="425.0" layoutY="358.0" mnemonicParsing="false" onAction="#onCarCategoryCheckboxChecked" />
-   <ComboBox fx:id="carCategoryComboBox" layoutX="450.0" layoutY="355.0" prefHeight="25.0" prefWidth="122.0" promptText="Car category" />
+   <ComboBox fx:id="carModelComboBox" layoutX="288.0" layoutY="404.0" prefHeight="25.0" prefWidth="122.0" promptText="Car model" visible="false" />
+   <CheckBox fx:id="carCategoryCheckbox" layoutX="264.0" layoutY="359.0" mnemonicParsing="false" onAction="#onCarCategoryCheckboxChecked" />
+   <ComboBox fx:id="carCategoryComboBox" layoutX="295.0" layoutY="356.0" prefHeight="25.0" prefWidth="122.0" promptText="Car category" />
    <DatePicker fx:id="dateBeginPicker" layoutX="728.0" layoutY="355.0" promptText="Begin Date" />
    <DatePicker fx:id="dateEndPicker" layoutX="939.0" layoutY="354.0" promptText="End Date" />
    <Button fx:id="findBtn" layoutX="901.0" layoutY="404.0" mnemonicParsing="false" onAction="#onFindBtnPressed" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: #E96151;" text="Find" />

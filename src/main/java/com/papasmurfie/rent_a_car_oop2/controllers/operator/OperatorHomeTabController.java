@@ -39,11 +39,16 @@ public class OperatorHomeTabController {
     private void checkRents() {
         Date today = new Date();
         List<Rents> rentsList = rentController.findInDateDiapazon(today, today);
-
-        if (!rentsList.isEmpty()) {
+        List<Rents> listOfNotReturnedRents = new ArrayList<>();
+        for (Rents rent : rentsList) {
+            if (rent.getReturnDescriptionProtocol().isEmpty()) {
+                listOfNotReturnedRents.add(rent);
+            }
+        }
+        if (!listOfNotReturnedRents.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Rent Alert");
-            alert.setHeaderText("You have " + rentsList.size() + " rents today.");
+            alert.setHeaderText("You have " + listOfNotReturnedRents.size() + " rents today.");
             alert.setContentText("Please check the rents and make sure everything is in order.");
             alert.showAndWait();
         }

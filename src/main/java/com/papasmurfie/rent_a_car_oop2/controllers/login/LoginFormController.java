@@ -39,30 +39,29 @@ public class LoginFormController implements Initializable {
 
     // Event handler for login button click
     @FXML
-    public void loginButtonOnAction() {
-        // Get username and password from the UI components
+    private void loginButtonOnAction() {
+
         String username = usernameTextField.getText();
         String password = enterPasswordField.getText();
 
-        // Call the AuthenticationController to handle the login request
+
         boolean isAuthenticated = authenticationController.authenticateUser(username, password);
         int roleId = authenticationController.getRole(username);
-        // Handle the result of login
+
         if (isAuthenticated) {
-            // Perform actions for successful login
-            loginMessageLabel.setText("Login successful");  // Update a text element with a success message
-            mainController.showLoggedInView(roleId);  // Change to another view on successful login
+
+            loginMessageLabel.setText("Login successful");
+            mainController.showLoggedInView(roleId);
             loginMessageLabel.setVisible(true);
             mainController.hideLoginView();
         } else {
-            // Handle unsuccessful login (e.g., show an error message)
             loginMessageLabel.setText("Login failed");
             loginMessageLabel.setVisible(true);
         }
     }
 
     @FXML
-    public void cancelButtonOnAction() {
+    private void cancelButtonOnAction() {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
@@ -77,12 +76,12 @@ public class LoginFormController implements Initializable {
         setupUI();
         enterPasswordField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                loginButtonOnAction();  // Call your login method when Enter is pressed
+                loginButtonOnAction();
             }
         });
     }
 
-    public void setupUI() {
+    private void setupUI() {
         usernameTextField.setText("");
         enterPasswordField.setText("");
         File brandingFile = new File("Images/login_rentacar_2.png");

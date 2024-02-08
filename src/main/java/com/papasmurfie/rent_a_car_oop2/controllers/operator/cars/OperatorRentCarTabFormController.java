@@ -26,6 +26,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class OperatorRentCarTabFormController {
@@ -70,6 +71,8 @@ public class OperatorRentCarTabFormController {
     private ObservableList<Cars> carsDataList;
     private ObservableList<CarBrand> carBrandsDataList;
 
+    private final Logger logger = Logger.getLogger(OperatorRentCarTabFormController.class.getName());
+
     private String imageChosenPath;
 
     public void initialize() {
@@ -93,7 +96,7 @@ public class OperatorRentCarTabFormController {
                         stage.setScene(scene);
                         stage.show();
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        logger.log(java.util.logging.Level.SEVERE, "Error occurred while opening the RentCar dialog", e);
                     }
                 }
             }
@@ -170,7 +173,7 @@ public class OperatorRentCarTabFormController {
     }
     @FXML
     private void AddCarButtonOnAction() {
-//if Insert TextField(s) empty -> Alert
+        //if Insert TextField(s) empty -> Alert
         if (insertCarModelTextField.getText().isEmpty() || carCharacteristicsTextField.getText().isEmpty()
         || SelectCategoryComboBox.getValue()==null || SelectClassComboBox.getValue()==null
         || SelectBrandComboBox.getValue() == null) {
@@ -218,6 +221,7 @@ public class OperatorRentCarTabFormController {
                 carController.deleteCar(selectedCar);
                 carsDataList.remove(selectedCar);
             } catch (Exception e) {
+                logger.log(java.util.logging.Level.SEVERE, "Error occurred while deleting the car", e);
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Cannot delete a car that has been rented.", ButtonType.OK);
                 alert.showAndWait();
             }

@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.util.logging.Logger;
+
 public class MainController {
     private static MainController instance;
     private Stage primaryStage;
@@ -20,6 +22,7 @@ public class MainController {
         }
         return instance;
     }
+    private Logger logger = Logger.getLogger(MainController.class.getName());
 
     private MainController() {
 
@@ -27,22 +30,20 @@ public class MainController {
     public void setPrimaryStage(Stage primaryStage){
         if(this.primaryStage == null){
         this.primaryStage = primaryStage;
-        }else{
-            //TODO: log !
-            System.out.println("Primary Stage can only be set once");
+        } else {
+            logger.warning("Primary stage already set");
         }
     }
 
     public void showLoginView() {
         try {
-            System.out.println(getClass().getResource("LoginView.fxml"));
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
             loader.setController(new LoginFormController(new AuthenticationController(new AuthenticationService(new UserRepositoryImpl())), this));
             Parent root = loader.load();
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (Exception e) {
-            e.printStackTrace(); // Should use logger
+            logger.log(java.util.logging.Level.SEVERE, e.getMessage(), e);
         }
     }
     public void hideLoginView(){
@@ -73,7 +74,7 @@ public class MainController {
             adminStage.setScene(scene);
             adminStage.show();
         } catch (Exception e) {
-            e.printStackTrace(); // Should use logger
+            logger.log(java.util.logging.Level.SEVERE, e.getMessage(), e);
         }
     }
 
@@ -86,8 +87,7 @@ public class MainController {
             operatorStage.setScene(scene);
             operatorStage.show();
         } catch (Exception e){
-            e.printStackTrace(); // Should use logger
-            e.getCause();
+            logger.log(java.util.logging.Level.SEVERE, e.getMessage(), e);
         }
     }
 }

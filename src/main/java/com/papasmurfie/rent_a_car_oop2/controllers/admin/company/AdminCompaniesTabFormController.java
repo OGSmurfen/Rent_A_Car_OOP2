@@ -56,10 +56,9 @@ public class AdminCompaniesTabFormController implements Initializable {
         confirmation.showAndWait();
 
         if (confirmation.getResult() == ButtonType.YES) {
-            // Delete the company from the database
+
             companiesController.deleteCompany(selectedItem);
 
-            // Update the ObservableList (and consequently, the TableView)
             companyDataList.remove(selectedItem);
         }
     }

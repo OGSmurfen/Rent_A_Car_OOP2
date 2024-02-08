@@ -1,5 +1,6 @@
 package com.papasmurfie.rent_a_car_oop2.controllers.operator.clients;
 
+import com.papasmurfie.rent_a_car_oop2.controllers.operator.cars.OperatorRentCarTabFormController;
 import com.papasmurfie.rent_a_car_oop2.entity.Clients;
 import com.papasmurfie.rent_a_car_oop2.entity.Users;
 import com.papasmurfie.rent_a_car_oop2.repository.impl.ClientsRepositoryImpl;
@@ -16,6 +17,7 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class OperatorEditClientsTabController implements Initializable {
     @FXML
@@ -33,6 +35,8 @@ public class OperatorEditClientsTabController implements Initializable {
 
     private final ClientsController clientsController = new ClientsController(new ClientService(new ClientsRepositoryImpl()));
     private ObservableList<Clients> clientsDataList;
+
+    private final Logger logger = Logger.getLogger(OperatorEditClientsTabController.class.getName());
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadDatabase();
@@ -77,6 +81,7 @@ public class OperatorEditClientsTabController implements Initializable {
                 clientsController.deleteOperator(selectedCLient);
                 clientsDataList.remove(selectedCLient);
             } catch (Exception e) {
+                logger.log(java.util.logging.Level.SEVERE, "Error deleting a client that has rented a car", e);
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error deleting a client that has rented a car", ButtonType.OK);
                 alert.showAndWait();
             }
