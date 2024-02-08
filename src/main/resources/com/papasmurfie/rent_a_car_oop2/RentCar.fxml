@@ -26,7 +26,7 @@
       <Label fx:id="carNameLabel" layoutX="158.0" layoutY="90.0" text="Car" />
       <TextField fx:id="kilometresTextField" layoutX="162.0" layoutY="533.0" promptText="Kilometres" visible="false" />
       <Button fx:id="calculateButton" layoutX="369.0" layoutY="534.0" mnemonicParsing="false" onAction="#calculateButtonAction" prefHeight="25.0" prefWidth="79.0" text="Calculate" visible="false" />
-      <CheckBox fx:id="scratchesCheckBox" layoutX="448.0" layoutY="367.0" mnemonicParsing="false" text="Scratches" />
-      <CheckBox fx:id="dentsCheckBox" layoutX="448.0" layoutY="398.0" mnemonicParsing="false" text="Dents" />
+      <CheckBox fx:id="scratchesCheckBox" layoutX="448.0" layoutY="367.0" mnemonicParsing="false" text="Scratches" visible="false" />
+      <CheckBox fx:id="dentsCheckBox" layoutX="448.0" layoutY="398.0" mnemonicParsing="false" text="Dents" visible="false" />
    </children>
 </AnchorPane>

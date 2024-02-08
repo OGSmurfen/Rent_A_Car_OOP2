@@ -88,6 +88,8 @@ public class OperatorRentCarDialogFormController implements Initializable {
                 rentButton.setText("Return");
                 clientComboBox.setDisable(true);
                 calculateButton.setVisible(true);
+                dentsCheckBox.setVisible(true);
+                scratchesCheckBox.setVisible(true);
                 Clients client = rentController.findClientByRentId(rentCar.getRent_id());
                 ObservableList<Clients> clientsDataList = FXCollections.observableArrayList(client);
                 clientComboBox.setItems(clientsDataList);
