@@ -24,7 +24,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class OperatorRentCarDialogFormController implements Initializable {
@@ -44,7 +43,7 @@ public class OperatorRentCarDialogFormController implements Initializable {
     @FXML
     private TextField kilometresTextField;
 
-    private Cars rentCar;
+    private final Cars rentCar;
 
     private final ClientsController clientsController = new ClientsController(new ClientService(new ClientsRepositoryImpl()));
 
@@ -150,6 +149,9 @@ public class OperatorRentCarDialogFormController implements Initializable {
 
     public void setupCarInfo() {
         carNameLabel.setText(rentCar.getCarBrand().getName() + " " + rentCar.getModel());
+        if (rentCar.getImages() == null) {
+            return;
+        }
         File carImageFile = new File(rentCar.getImages());
         Image carImage = new Image(carImageFile.toURI().toString());
         carImageView.setImage(carImage);

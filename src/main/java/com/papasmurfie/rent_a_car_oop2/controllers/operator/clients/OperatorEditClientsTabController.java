@@ -46,7 +46,8 @@ public class OperatorEditClientsTabController implements Initializable {
         ClientNameColumn.setCellValueFactory(new PropertyValueFactory<>("clientName"));
     }
 
-    public void AddClientButtonOnAction(ActionEvent event) {
+    @FXML
+    private void AddClientButtonOnAction(ActionEvent event) {
         //if Insert TextField(s) empty -> Alert
         if (InsertClientNameField.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please insert data to be added!", ButtonType.OK);
@@ -59,7 +60,8 @@ public class OperatorEditClientsTabController implements Initializable {
         InsertClientNameField.setText("");
     }
 
-    public void DeleteClientButtonOnAction(ActionEvent event) {
+    @FXML
+    private void DeleteClientButtonOnAction(ActionEvent event) {
         Clients selectedCLient = (Clients) ClientsTableView.getSelectionModel().getSelectedItem();
         if (selectedCLient == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a row from TableView", ButtonType.OK);
@@ -71,11 +73,13 @@ public class OperatorEditClientsTabController implements Initializable {
         confirmation.showAndWait();
 
         if (confirmation.getResult() == ButtonType.YES) {
-            clientsController.deleteOperator(selectedCLient);
-            clientsDataList.remove(selectedCLient);
+            try {
+                clientsController.deleteOperator(selectedCLient);
+                clientsDataList.remove(selectedCLient);
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error deleting a client that has rented a car", ButtonType.OK);
+                alert.showAndWait();
+            }
         }
-
-
     }
-
 }

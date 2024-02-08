@@ -21,10 +21,7 @@ public class AdminHomeTabController implements Initializable {
     @FXML
     private ImageView Morpheus;
 
-
-
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // home tab images
         setupUI();
     }
 

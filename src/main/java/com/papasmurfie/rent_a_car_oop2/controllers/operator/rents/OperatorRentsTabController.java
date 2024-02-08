@@ -7,6 +7,7 @@ import com.papasmurfie.rent_a_car_oop2.repository.impl.RentsRepositoryImpl;
 import com.papasmurfie.rent_a_car_oop2.service.CarService;
 import com.papasmurfie.rent_a_car_oop2.service.RentsService;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,35 +17,19 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class OperatorRentsTabController {
     @FXML
-    private Button resetBtn;
-    @FXML
-    private Button findBtn;
-    @FXML
     private DatePicker dateBeginPicker;
     @FXML
     private DatePicker dateEndPicker;
     @FXML
-    private Button DeleteCarButton;
-    @FXML
-    private Button RentCarButton;
-    @FXML
-    private TextField insertCarModelTextField;
-    @FXML
-    private TextField carCharacteristicsTextField;
-    @FXML
-    private CheckBox smokerCheckButton;
-
-    @FXML
-    private CheckBox availableCarsCheckBox;
-    @FXML
     private TableColumn rentedDateColumn;
     @FXML
-    private TableColumn returnedDateColumn;
+    private TableColumn<Rents, LocalDate> returnedDateColumn;
     @FXML
     private TableColumn kmColumn;
     @FXML
@@ -64,18 +49,9 @@ public class OperatorRentsTabController {
     @FXML
     private ComboBox carModelComboBox;
     @FXML
-    private CheckBox carModelCheckbox;
-    @FXML
     private CheckBox carCategoryCheckbox;
     @FXML
     private ComboBox carCategoryComboBox;
-    @FXML
-    private ComboBox SelectClassComboBox;
-    @FXML
-    private ComboBox SelectCategoryComboBox;
-    @FXML
-    private ComboBox<String> SelectBrandComboBox;
-
     @FXML
     private TableColumn<Rents, String> CarBrandColumn;
     @FXML
@@ -90,10 +66,6 @@ public class OperatorRentsTabController {
     private TableColumn<Rents, Boolean> CarSmokerColumn;
     @FXML
     private TableColumn<Rents, Boolean> isRentedColumn;
-    @FXML
-    private Button AddCarButton;
-
-// TODO: Populate the other combo boxes.
 
     private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()));
     private final RentController rentController = new RentController(new RentsService(new RentsRepositoryImpl()));
@@ -104,28 +76,6 @@ public class OperatorRentsTabController {
     public void initialize() {
         populateTable();
         populateComboBoxes();
-        //populateComboBoxes();
-
-//        rentsTableView.setOnMouseClicked(event -> {
-//            if (event.getClickCount() == 1) { // Check for a single click
-//
-//                Rents selectedRent = (Rents) rentsTableView.getSelectionModel().getSelectedItem();
-//
-////                if (selectedRent != null) {
-////                    if(selectedRent.isIsrented()){
-////                        RentCarButton.setText("Return");
-////                    }
-////                    if(!selectedRent.isIsrented()){
-////                        RentCarButton.setText("Rent");
-////                    }
-////                }
-////
-////                if(selectedRent == null){
-////                    RentCarButton.setText("Rent/Return");
-////                }
-//            }
-//
-//        });
     }
 
     private void populateComboBoxes() {

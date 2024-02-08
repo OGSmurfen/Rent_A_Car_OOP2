@@ -21,12 +21,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.papasmurfie.rent_a_car_oop2.controllers.operator.cars.OperatorRentCarDialogFormConfiguration.RETURN;
 
 public class OperatorRentCarTabFormController {
     @FXML
@@ -44,23 +44,11 @@ public class OperatorRentCarTabFormController {
     @FXML
     private CheckBox availableCarsCheckBox;
     @FXML
-    private DatePicker dateRentedField;
-    @FXML
-    private TextField descriptionTakeField;
-    @FXML
-    private TextField kmTextField;
-    @FXML
-    private TextField descriptionReturnField;
-    @FXML
-    private DatePicker dateReturnedField;
-
-    @FXML
     private ComboBox SelectClassComboBox;
     @FXML
     private ComboBox SelectCategoryComboBox;
     @FXML
     private ComboBox<String> SelectBrandComboBox;
-
     @FXML
     private TableView<Cars> CarsTableView;
     @FXML
@@ -77,14 +65,12 @@ public class OperatorRentCarTabFormController {
     private TableColumn<Cars, String> CarCharacteristicsColumn;
     @FXML
     private TableColumn<Cars, Boolean> CarSmokerColumn;
-    @FXML
-    private Button AddCarButton;
-
-// TODO: Populate the other combo boxes.
 
     private final CarController carController = new CarController(new CarService(new CarRepositoryImpl()));
     private ObservableList<Cars> carsDataList;
     private ObservableList<CarBrand> carBrandsDataList;
+
+    private String imageChosenPath;
 
     public void initialize() {
         populateTable();
@@ -157,7 +143,7 @@ public class OperatorRentCarTabFormController {
         SelectBrandComboBox.setItems(FXCollections.observableArrayList(brandNames));
     }
 
-    public  void populateTable() {
+    public void populateTable() {
         List<Cars> carsList = carController.findAll();
         if(carsDataList != null){carsDataList.clear();}
         carsDataList = FXCollections.observableArrayList(carsList);
@@ -182,7 +168,8 @@ public class OperatorRentCarTabFormController {
         CarSmokerColumn.setCellValueFactory(new PropertyValueFactory<>("smoker"));
         isRentedColumn.setCellValueFactory(new PropertyValueFactory<>("isrented"));
     }
-    public void AddCarButtonOnAction() {
+    @FXML
+    private void AddCarButtonOnAction() {
 //if Insert TextField(s) empty -> Alert
         if (insertCarModelTextField.getText().isEmpty() || carCharacteristicsTextField.getText().isEmpty()
         || SelectCategoryComboBox.getValue()==null || SelectClassComboBox.getValue()==null
@@ -195,10 +182,10 @@ public class OperatorRentCarTabFormController {
         if(smokerCheckButton.isSelected()){smoker = true;}else{smoker = false;}
         Cars car = new Cars(carController.findBrand(SelectBrandComboBox.getValue()) ,
                 insertCarModelTextField.getText(),
-               carController.findCarClass((String) SelectClassComboBox.getValue()),
+                carController.findCarClass((String) SelectClassComboBox.getValue()),
                 carController.findCarCategory((String) SelectCategoryComboBox.getValue()),
                 carCharacteristicsTextField.getText(),
-                "none",
+                imageChosenPath,
                 smoker,
                 false);
         carController.addCar(car);
@@ -211,10 +198,12 @@ public class OperatorRentCarTabFormController {
         SelectClassComboBox.setValue(null);
         carCharacteristicsTextField.setText("");
         insertCarModelTextField.setText("");
+        imageChosenPath = null;
     }
 
-    public void DeleteCarButtonOnAction() {
-        Cars selectedCar = (Cars) CarsTableView.getSelectionModel().getSelectedItem();
+    @FXML
+    private void DeleteCarButtonOnAction() {
+        Cars selectedCar = CarsTableView.getSelectionModel().getSelectedItem();
         if (selectedCar == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a row from TableView", ButtonType.OK);
             alert.showAndWait();
@@ -235,7 +224,8 @@ public class OperatorRentCarTabFormController {
         }
     }
 
-    public void onAvailableCarsCheckboxChecked(ActionEvent event) {
+    @FXML
+    private void onAvailableCarsCheckboxChecked(ActionEvent event) {
         if(availableCarsCheckBox.isSelected()) {
             List<Cars> carsList = carController.findAvailableCars(!availableCarsCheckBox.isSelected());
             populateTable(carsList);
@@ -244,5 +234,14 @@ public class OperatorRentCarTabFormController {
             populateTable();
         }
 
+    }
+
+    @FXML
+    private void addImageAction(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            imageChosenPath = file.getAbsolutePath();
+        }
     }
 }

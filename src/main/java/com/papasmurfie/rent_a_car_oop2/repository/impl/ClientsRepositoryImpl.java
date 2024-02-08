@@ -33,10 +33,18 @@ public class ClientsRepositoryImpl implements ClientsRepository {
 
     @Override
     public void deleteClient(Clients client) {
-        EntityTransaction transaction = cEntityManager.getTransaction();
-        transaction.begin();
-        cEntityManager.remove(client);
-        transaction.commit();
+        try {
+            cEntityManager.getTransaction().begin();
+            if (!cEntityManager.contains(client)) {
+                client = cEntityManager.merge(client);
+            }
+            cEntityManager.remove(client);
+
+            cEntityManager.getTransaction().commit();
+        } catch (Exception e) {
+            cEntityManager.getTransaction().rollback();
+            throw e;
+        }
     }
 
     @Override

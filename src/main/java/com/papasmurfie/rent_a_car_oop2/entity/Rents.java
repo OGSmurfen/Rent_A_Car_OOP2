@@ -84,6 +84,9 @@ public class Rents {
     }
 
     public LocalDate getDateReturned() {
+        if (dateReturned == null) {
+            return null;
+        }
         return dateReturned.toLocalDate();
     }
 
